@@ -10,4 +10,5 @@ public class GuineeApplication {
 		SpringApplication.run(GuineeApplication.class, args);
 	}
 
+	
 }

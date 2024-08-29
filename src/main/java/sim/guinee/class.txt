@@ -1,0 +1,914 @@
+
+
+CREATE TABLE `agenda_perso` (
+  `id_agenda` int(11) NOT NULL,
+  `expediteur` text DEFAULT NULL,
+  `titre` text NOT NULL,
+  `description` text DEFAULT NULL,
+  `all_day` int(2) DEFAULT 0,
+  `debut` datetime NOT NULL,
+  `fin` datetime NOT NULL,
+  `couleur` varchar(7) DEFAULT NULL,
+  `lien` text DEFAULT NULL,
+  `valider` int(1) NOT NULL DEFAULT 0,
+  `type` enum('private','public') NOT NULL DEFAULT 'private',
+  `id_personnel` text NOT NULL,
+  `date_enregistrement` timestamp NULL DEFAULT current_timestamp(),
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE `categorie_produit` (
+  `id_categorie_produit` int(11) NOT NULL,
+  `code_categorie_produit` varchar(30) NOT NULL,
+  `nom_categorie_produit` text NOT NULL,
+  `famille_produit` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+CREATE TABLE `autre_msg` (
+  `id` int(11) NOT NULL,
+  `expediteur` text DEFAULT NULL,
+  `msg` text DEFAULT NULL,
+  `date` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+CREATE TABLE `client` (
+  `id_client` int(11) NOT NULL,
+  `nom_client` text NOT NULL,
+  `adresse` text DEFAULT NULL,
+  `contact` text DEFAULT NULL,
+  `localite` varchar(100) DEFAULT NULL,
+  `type_client` int(11) NOT NULL DEFAULT 0,
+  `date_enregistrement` date DEFAULT NULL,
+  `id_personnel` text NOT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+CREATE TABLE `commune` (
+  `id_commune` int(11) NOT NULL,
+  `code_commune` varchar(20) NOT NULL,
+  `departement` varchar(20) NOT NULL,
+  `nom_commune` text NOT NULL,
+  `abrege_commune` varchar(10) DEFAULT NULL,
+  `id_personnel` text DEFAULT NULL,
+  `date_enregistrement` timestamp NOT NULL DEFAULT current_timestamp(),
+  `etat` varchar(10) DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL
+) 
+
+CREATE TABLE `connecter` (
+  `id_connexion` int(11) NOT NULL,
+  `personnel` varchar(50) NOT NULL,
+  `session_id` text DEFAULT NULL,
+  `date_connexion` datetime NOT NULL,
+  `date_deconnexion` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `date_c` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+
+CREATE TABLE `departement` (
+  `id_departement` int(11) NOT NULL,
+  `code_departement` varchar(20) NOT NULL,
+  `region` varchar(20) NOT NULL,
+  `nom_departement` text NOT NULL,
+  `abrege_departement` varchar(10) DEFAULT NULL,
+  `id_personnel` text DEFAULT NULL,
+  `date_enregistrement` timestamp NOT NULL DEFAULT current_timestamp(),
+  `etat` varchar(10) DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+CREATE TABLE `enqueteur` (
+  `id_enqueteur` int(11) NOT NULL,
+  `code` varchar(30) NOT NULL,
+  `nom` text NOT NULL,
+  `prenom` text NOT NULL,
+  `sexe` text NOT NULL,
+  `contact` varchar(20) NOT NULL,
+  `localite` varchar(30) NOT NULL,
+  `adresse` text DEFAULT NULL,
+  `superviseur` int(11) NOT NULL,
+  `description` text DEFAULT NULL,
+  `app_profil` varchar(100) DEFAULT NULL,
+  `date_enregistrement` date DEFAULT NULL,
+  `id_personnel` text DEFAULT NULL,
+  `etat` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+CREATE TABLE `enquete_collecte` (
+  `id_enquete` bigint(20) NOT NULL,
+  `num_fiche` varchar(100) NOT NULL,
+  `marche` varchar(100) NOT NULL,
+  `date_enquete` date NOT NULL,
+  `collecteur` varchar(30) NOT NULL,
+  `date_enregistrement` date DEFAULT NULL,
+  `id_personnel` text DEFAULT NULL,
+  `etat` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+CREATE TABLE `enquete_grossiste` (
+  `id_enquete` bigint(20) NOT NULL,
+  `num_fiche` varchar(100) NOT NULL,
+  `marche` varchar(100) NOT NULL,
+  `date_enquete` date NOT NULL,
+  `collecteur` varchar(30) NOT NULL,
+  `date_enregistrement` date DEFAULT NULL,
+  `id_personnel` text DEFAULT NULL,
+  `etat` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+
+CREATE TABLE `village` (
+  `id_village` int(11) NOT NULL,
+  `code_village` varchar(20) NOT NULL,
+  `commune` varchar(20) NOT NULL,
+  `nom_village` text NOT NULL,
+  `abrege_village` varchar(10) DEFAULT NULL,
+  `homme` int(11) DEFAULT NULL,
+  `femme` int(11) DEFAULT NULL,
+  `jeune` int(11) DEFAULT NULL,
+  `menage` int(11) DEFAULT NULL,
+  `id_personnel` text DEFAULT NULL,
+  `date_enregistrement` timestamp NOT NULL DEFAULT current_timestamp(),
+  `etat` varchar(10) DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE `user_access` (
+  `id` int(11) NOT NULL,
+  `id_personnel` int(11) NOT NULL,
+  `page_edit` text NOT NULL,
+  `page_verif` text NOT NULL,
+  `page_valid` text NOT NULL,
+  `page_interd` text NOT NULL,
+  `personnel` int(11) NOT NULL,
+  `date_enregistrement` date NOT NULL,
+  `date_modification` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE `unite_mesure` (
+  `id_unite` int(11) NOT NULL,
+  `nom_unite` varchar(100) NOT NULL,
+  `date_enregistrement` date DEFAULT NULL,
+  `id_personnel` text NOT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL,
+  `definition` text DEFAULT NULL,
+  `poids_indicatif` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE `type_detaillant` (
+  `id_type_detaillant` int(11) NOT NULL,
+  `type_detaillant` varchar(100) NOT NULL,
+  `date_enregistrement` date DEFAULT NULL,
+  `id_personnel` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+CREATE TABLE `sous_prefecture` (
+  `id_sous_prefecture` int(25) NOT NULL,
+  `prefecture` int(11) NOT NULL,
+  `nom_sous_prefecture` text DEFAULT NULL,
+  `id_personnel` text DEFAULT NULL,
+  `date_enregistrement` date DEFAULT NULL,
+  `etat` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) 
+
+
+CREATE TABLE `situation` (
+  `id` int(11) NOT NULL,
+  `idid` int(11) NOT NULL DEFAULT 0,
+  `contact` varchar(20) NOT NULL,
+  `nombre` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `position` int(11) NOT NULL
+)
+
+CREATE TABLE `ruche_sync` (
+  `id` bigint(11) NOT NULL,
+  `type` int(1) NOT NULL DEFAULT 0,
+  `code` longtext DEFAULT NULL,
+  `id_personnel` text DEFAULT NULL,
+  `date_enregistrement` timestamp NOT NULL DEFAULT current_timestamp(),
+  `etat` int(1) NOT NULL DEFAULT 0
+)
+
+
+CREATE TABLE `region_produit` (
+  `id_region_produit` int(11) NOT NULL,
+  `code_region_produit` varchar(30) DEFAULT NULL,
+  `nom_region_produit` text NOT NULL,
+  `forme_concerne` text DEFAULT NULL,
+  `date_enregistrement` date NOT NULL,
+  `id_personnel` text DEFAULT NULL,
+  `etat` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE `region_naturelle` (
+  `id_region_naturelle` int(11) NOT NULL,
+  `nom_region_naturelle` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+CREATE TABLE `region` (
+  `id_region` int(11) NOT NULL,
+  `code_region` varchar(30) NOT NULL,
+  `nom_region` text NOT NULL,
+  `abrege_region` varchar(30) NOT NULL,
+  `region_naturelle` int(11) DEFAULT NULL,
+  `couleur` text DEFAULT NULL,
+  `personnel` text DEFAULT NULL,
+  `date_enregistrement` date DEFAULT NULL,
+  `etat` text DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL
+)
+
+CREATE TABLE `produit` (
+  `id_produit` int(11) NOT NULL,
+  `code_produit` text DEFAULT NULL,
+  `nom_produit` text NOT NULL,
+  `famille_produit` int(11) NOT NULL,
+  `date_enregistrement` date NOT NULL,
+  `id_personnel` text DEFAULT NULL,
+  `etat` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+
+CREATE TABLE `personnel` (
+  `N` int(11) NOT NULL,
+  `id_personnel` varchar(200) NOT NULL,
+  `titre` varchar(30) DEFAULT NULL,
+  `pass` text NOT NULL,
+  `nom` text NOT NULL,
+  `prenom` text NOT NULL,
+  `app_profil` varchar(1000) DEFAULT 'fragment_main1,fragment_main2,fragment_main3',
+  `contact` varchar(30) DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `fonction` text NOT NULL,
+  `description_fonction` text DEFAULT NULL,
+  `avatar` text DEFAULT NULL,
+  `niveau` int(11) NOT NULL DEFAULT 5,
+  `date_enregistrement` date DEFAULT NULL,
+  `date_modification` date DEFAULT NULL,
+  `statut` int(1) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE `fonction` (
+  `id_fonction` int(25) NOT NULL,
+  `fonction` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `service` text DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+CREATE TABLE `fiche_collecte` (
+  `id_fiche` int(11) NOT NULL,
+  `enquete` int(30) NOT NULL,
+  `statut` varchar(30) DEFAULT NULL,
+  `observation` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+CREATE TABLE `fournisseur` (
+  `id_fournisseur` int(11) NOT NULL,
+  `nom_fournisseur` text NOT NULL,
+  `adresse` text DEFAULT NULL,
+  `contact` text DEFAULT NULL,
+  `localite` varchar(100) DEFAULT NULL,
+  `type_fournisseur` int(11) NOT NULL DEFAULT 0,
+  `date_enregistrement` date DEFAULT NULL,
+  `id_personnel` text NOT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+CREATE TABLE `grossiste` (
+  `id_grossiste` int(11) NOT NULL,
+  `code` varchar(100) NOT NULL,
+  `nom` text NOT NULL,
+  `contact` varchar(20) NOT NULL,
+  `localite` varchar(30) NOT NULL,
+  `adresse` text DEFAULT NULL,
+  `date_enregistrement` date DEFAULT NULL,
+  `id_personnel` text DEFAULT NULL,
+  `etat` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+
+CREATE TABLE `prix_marche_collecte` (
+  `id_fiche` bigint(11) NOT NULL,
+  `enquete` bigint(20) NOT NULL,
+  `produit` varchar(100) NOT NULL,
+  `unite` int(11) NOT NULL,
+  `poids_unitaire` double NOT NULL,
+  `montant_achat` double NOT NULL,
+  `prix_fg_kg` double NOT NULL,
+  `localite_origine` varchar(100) NOT NULL,
+  `distance_origine_marche` double NOT NULL,
+  `montant_transport` double NOT NULL,
+  `etat_route` text NOT NULL,
+  `quantite_collecte` double NOT NULL,
+  `client_principal` int(11) NOT NULL DEFAULT 0,
+  `fournisseur_principal` int(11) NOT NULL DEFAULT 0,
+  `niveau_approvisionement` int(11) NOT NULL,
+  `app_mobile` int(1) NOT NULL DEFAULT 0,
+  `observation` text DEFAULT NULL,
+  `statut` int(11) NOT NULL DEFAULT 0,
+  `id_personnel` text DEFAULT NULL,
+  `date_enregistrement` date DEFAULT NULL,
+  `etat` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+
+CREATE TABLE `prix_marche_consommation` (
+  `id_fiche` bigint(11) NOT NULL,
+  `enquete` bigint(20) NOT NULL,
+  `produit` varchar(100) NOT NULL,
+  `unite` int(11) NOT NULL,
+  `poids_unitaire` double NOT NULL,
+  `prix_mesure` double NOT NULL,
+  `prix_kg_litre` double NOT NULL,
+  `niveau_approvisionement` int(11) NOT NULL,
+  `observation` text DEFAULT NULL,
+  `document` text DEFAULT NULL,
+  `app_mobile` int(11) NOT NULL DEFAULT 0,
+  `statut` int(1) NOT NULL DEFAULT 0,
+  `id_personnel` text DEFAULT NULL,
+  `date_enregistrement` date DEFAULT NULL,
+  `etat` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+
+CREATE TABLE `prix_marche_grossiste` (
+  `id_fiche` bigint(11) NOT NULL,
+  `enquete` bigint(20) DEFAULT NULL,
+  `grossiste` varchar(100) DEFAULT NULL,
+  `produit` varchar(100) NOT NULL,
+  `unite_stock` int(11) NOT NULL,
+  `nombre_unite_stock` double NOT NULL,
+  `poids_moyen_unite_stock` double NOT NULL,
+  `poids_stock` double NOT NULL,
+  `unite_achat` int(11) NOT NULL,
+  `nombre_unite_achat` double NOT NULL,
+  `poids_moyen_unite_achat` double NOT NULL,
+  `poids_total_achat` double NOT NULL,
+  `localite_achat` varchar(100) NOT NULL,
+  `fournisseur_achat` int(11) NOT NULL DEFAULT 0,
+  `unite_vente` int(11) NOT NULL,
+  `nombre_unite_vente` double NOT NULL,
+  `poids_moyen_unite_vente` double NOT NULL,
+  `poids_total_unite_vente` double NOT NULL,
+  `prix_unitaire_vente` double NOT NULL,
+  `client_vente` int(11) NOT NULL,
+  `localite_vente` varchar(100) NOT NULL,
+  `app_mobile` int(11) NOT NULL DEFAULT 0,
+  `observation` text DEFAULT NULL,
+  `statut` int(11) NOT NULL DEFAULT 0,
+  `id_personnel` text DEFAULT NULL,
+  `date_enregistrement` date DEFAULT NULL,
+  `etat` text DEFAULT NULL,
+  `modifier_le` date DEFAULT NULL,
+  `modifier_par` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+
+
+
+
+
+
+
+
+--
+ALTER TABLE `agenda_perso`
+  ADD PRIMARY KEY (`id_agenda`);
+
+--
+-- Index pour la table `autre_msg`
+--
+ALTER TABLE `autre_msg`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `categorie_produit`
+--
+ALTER TABLE `categorie_produit`
+  ADD PRIMARY KEY (`id_categorie_produit`);
+
+--
+-- Index pour la table `client`
+--
+ALTER TABLE `client`
+  ADD PRIMARY KEY (`id_client`);
+
+--
+-- Index pour la table `commune`
+--
+ALTER TABLE `commune`
+  ADD PRIMARY KEY (`id_commune`),
+  ADD KEY `Code1` (`code_commune`,`departement`);
+
+--
+-- Index pour la table `connecter`
+--
+ALTER TABLE `connecter`
+  ADD PRIMARY KEY (`id_connexion`);
+
+--
+-- Index pour la table `departement`
+--
+ALTER TABLE `departement`
+  ADD PRIMARY KEY (`id_departement`),
+  ADD KEY `Code1` (`code_departement`,`region`);
+
+--
+-- Index pour la table `enqueteur`
+--
+ALTER TABLE `enqueteur`
+  ADD PRIMARY KEY (`id_enqueteur`),
+  ADD KEY `relai` (`superviseur`),
+  ADD KEY `contact` (`contact`);
+
+--
+-- Index pour la table `enquete_collecte`
+--
+ALTER TABLE `enquete_collecte`
+  ADD PRIMARY KEY (`id_enquete`),
+  ADD KEY `collecteur` (`collecteur`),
+  ADD KEY `marche` (`marche`);
+
+--
+-- Index pour la table `enquete_consommation`
+--
+ALTER TABLE `enquete_consommation`
+  ADD PRIMARY KEY (`id_enquete`),
+  ADD KEY `collecteur` (`collecteur`),
+  ADD KEY `marche` (`marche`);
+
+--
+-- Index pour la table `enquete_grossiste`
+--
+ALTER TABLE `enquete_grossiste`
+  ADD PRIMARY KEY (`id_enquete`),
+  ADD KEY `collecteur` (`collecteur`),
+  ADD KEY `marche` (`marche`);
+
+--
+-- Index pour la table `envoi_msg`
+--
+ALTER TABLE `envoi_msg`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `famille_produit`
+--
+ALTER TABLE `famille_produit`
+  ADD PRIMARY KEY (`id_famille_produit`);
+
+--
+-- Index pour la table `fiche_collecte`
+--
+ALTER TABLE `fiche_collecte`
+  ADD PRIMARY KEY (`id_fiche`),
+  ADD KEY `statut` (`statut`),
+  ADD KEY `marche` (`enquete`);
+
+--
+-- Index pour la table `fonction`
+--
+ALTER TABLE `fonction`
+  ADD PRIMARY KEY (`id_fonction`);
+
+--
+-- Index pour la table `forme_produit`
+--
+ALTER TABLE `forme_produit`
+  ADD PRIMARY KEY (`id_forme_produit`);
+
+--
+-- Index pour la table `fournisseur`
+--
+ALTER TABLE `fournisseur`
+  ADD PRIMARY KEY (`id_fournisseur`);
+
+--
+-- Index pour la table `grossiste`
+--
+ALTER TABLE `grossiste`
+  ADD PRIMARY KEY (`id_grossiste`),
+  ADD KEY `contact` (`contact`);
+
+--
+-- Index pour la table `info_solde`
+--
+ALTER TABLE `info_solde`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `marche`
+--
+ALTER TABLE `marche`
+  ADD PRIMARY KEY (`id_marche`),
+  ADD UNIQUE KEY `code_2` (`code_marche`),
+  ADD KEY `localite` (`localite`),
+  ADD KEY `code` (`code_marche`);
+
+--
+-- Index pour la table `niveau_approvisionement`
+--
+ALTER TABLE `niveau_approvisionement`
+  ADD PRIMARY KEY (`id_niveau_approvisionement`),
+  ADD KEY `marche` (`niveau_approvisionement`);
+
+--
+-- Index pour la table `parametrage`
+--
+ALTER TABLE `parametrage`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `pays_produit`
+--
+ALTER TABLE `pays_produit`
+  ADD PRIMARY KEY (`id_pays_produit`);
+
+--
+-- Index pour la table `personnel`
+--
+ALTER TABLE `personnel`
+  ADD PRIMARY KEY (`N`),
+  ADD UNIQUE KEY `id_personnel` (`id_personnel`);
+
+--
+-- Index pour la table `prefecture`
+--
+ALTER TABLE `prefecture`
+  ADD PRIMARY KEY (`id_prefecture`);
+
+--
+-- Index pour la table `prix_marche_collecte`
+--
+ALTER TABLE `prix_marche_collecte`
+  ADD PRIMARY KEY (`id_fiche`),
+  ADD KEY `marche` (`produit`);
+
+--
+-- Index pour la table `prix_marche_consommation`
+--
+ALTER TABLE `prix_marche_consommation`
+  ADD PRIMARY KEY (`id_fiche`),
+  ADD KEY `collecteur` (`niveau_approvisionement`),
+  ADD KEY `marche` (`produit`);
+
+--
+-- Index pour la table `prix_marche_grossiste`
+--
+ALTER TABLE `prix_marche_grossiste`
+  ADD PRIMARY KEY (`id_fiche`),
+  ADD KEY `collecteur` (`poids_moyen_unite_vente`),
+  ADD KEY `marche` (`produit`);
+
+--
+-- Index pour la table `produit`
+--
+ALTER TABLE `produit`
+  ADD PRIMARY KEY (`id_produit`);
+
+--
+-- Index pour la table `region`
+--
+ALTER TABLE `region`
+  ADD PRIMARY KEY (`id_region`);
+
+--
+-- Index pour la table `region_naturelle`
+--
+ALTER TABLE `region_naturelle`
+  ADD PRIMARY KEY (`id_region_naturelle`);
+
+--
+-- Index pour la table `region_produit`
+--
+ALTER TABLE `region_produit`
+  ADD PRIMARY KEY (`id_region_produit`);
+
+--
+-- Index pour la table `ruche_sync`
+--
+ALTER TABLE `ruche_sync`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `situation`
+--
+ALTER TABLE `situation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sous_prefecture`
+--
+ALTER TABLE `sous_prefecture`
+  ADD PRIMARY KEY (`id_sous_prefecture`),
+  ADD UNIQUE KEY `id_departement` (`id_sous_prefecture`),
+  ADD KEY `id_departement_2` (`id_sous_prefecture`);
+
+--
+-- Index pour la table `type_detaillant`
+--
+ALTER TABLE `type_detaillant`
+  ADD PRIMARY KEY (`id_type_detaillant`),
+  ADD KEY `marche` (`type_detaillant`);
+
+--
+-- Index pour la table `unite_mesure`
+--
+ALTER TABLE `unite_mesure`
+  ADD PRIMARY KEY (`id_unite`),
+  ADD KEY `marche` (`nom_unite`);
+
+--
+-- Index pour la table `user_access`
+--
+ALTER TABLE `user_access`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `village`
+--
+ALTER TABLE `village`
+  ADD PRIMARY KEY (`id_village`),
+  ADD KEY `Code1` (`code_village`,`commune`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `agenda_perso`
+--
+ALTER TABLE `agenda_perso`
+  MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `autre_msg`
+--
+ALTER TABLE `autre_msg`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `categorie_produit`
+--
+ALTER TABLE `categorie_produit`
+  MODIFY `id_categorie_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `client`
+--
+ALTER TABLE `client`
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `commune`
+--
+ALTER TABLE `commune`
+  MODIFY `id_commune` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=877;
+
+--
+-- AUTO_INCREMENT pour la table `connecter`
+--
+ALTER TABLE `connecter`
+  MODIFY `id_connexion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3252;
+
+--
+-- AUTO_INCREMENT pour la table `departement`
+--
+ALTER TABLE `departement`
+  MODIFY `id_departement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+
+--
+-- AUTO_INCREMENT pour la table `enqueteur`
+--
+ALTER TABLE `enqueteur`
+  MODIFY `id_enqueteur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
+
+--
+-- AUTO_INCREMENT pour la table `enquete_collecte`
+--
+ALTER TABLE `enquete_collecte`
+  MODIFY `id_enquete` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1919102017126806;
+
+--
+-- AUTO_INCREMENT pour la table `enquete_consommation`
+--
+ALTER TABLE `enquete_consommation`
+  MODIFY `id_enquete` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2030082017056287;
+
+--
+-- AUTO_INCREMENT pour la table `enquete_grossiste`
+--
+ALTER TABLE `enquete_grossiste`
+  MODIFY `id_enquete` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1016082017063713;
+
+--
+-- AUTO_INCREMENT pour la table `envoi_msg`
+--
+ALTER TABLE `envoi_msg`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `famille_produit`
+--
+ALTER TABLE `famille_produit`
+  MODIFY `id_famille_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT pour la table `fiche_collecte`
+--
+ALTER TABLE `fiche_collecte`
+  MODIFY `id_fiche` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `fonction`
+--
+ALTER TABLE `fonction`
+  MODIFY `id_fonction` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT pour la table `forme_produit`
+--
+ALTER TABLE `forme_produit`
+  MODIFY `id_forme_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT pour la table `fournisseur`
+--
+ALTER TABLE `fournisseur`
+  MODIFY `id_fournisseur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `grossiste`
+--
+ALTER TABLE `grossiste`
+  MODIFY `id_grossiste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=871;
+
+--
+-- AUTO_INCREMENT pour la table `info_solde`
+--
+ALTER TABLE `info_solde`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT pour la table `marche`
+--
+ALTER TABLE `marche`
+  MODIFY `id_marche` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+
+--
+-- AUTO_INCREMENT pour la table `niveau_approvisionement`
+--
+ALTER TABLE `niveau_approvisionement`
+  MODIFY `id_niveau_approvisionement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `parametrage`
+--
+ALTER TABLE `parametrage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `pays_produit`
+--
+ALTER TABLE `pays_produit`
+  MODIFY `id_pays_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `personnel`
+--
+ALTER TABLE `personnel`
+  MODIFY `N` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT pour la table `prefecture`
+--
+ALTER TABLE `prefecture`
+  MODIFY `id_prefecture` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT pour la table `prix_marche_collecte`
+--
+ALTER TABLE `prix_marche_collecte`
+  MODIFY `id_fiche` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1918092017064237;
+
+--
+-- AUTO_INCREMENT pour la table `prix_marche_consommation`
+--
+ALTER TABLE `prix_marche_consommation`
+  MODIFY `id_fiche` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2030082017095948;
+
+--
+-- AUTO_INCREMENT pour la table `prix_marche_grossiste`
+--
+ALTER TABLE `prix_marche_grossiste`
+  MODIFY `id_fiche` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98211;
+
+--
+-- AUTO_INCREMENT pour la table `produit`
+--
+ALTER TABLE `produit`
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
+
+--
+-- AUTO_INCREMENT pour la table `region`
+--
+ALTER TABLE `region`
+  MODIFY `id_region` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pour la table `region_naturelle`
+--
+ALTER TABLE `region_naturelle`
+  MODIFY `id_region_naturelle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `region_produit`
+--
+ALTER TABLE `region_produit`
+  MODIFY `id_region_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `ruche_sync`
+--
+ALTER TABLE `ruche_sync`
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `situation`
+--
+ALTER TABLE `situation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `sous_prefecture`
+--
+ALTER TABLE `sous_prefecture`
+  MODIFY `id_sous_prefecture` int(25) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `type_detaillant`
+--
+ALTER TABLE `type_detaillant`
+  MODIFY `id_type_detaillant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `unite_mesure`
+--
+ALTER TABLE `unite_mesure`
+  MODIFY `id_unite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=280;
+
+--
+-- AUTO_INCREMENT pour la table `user_access`
+--
+ALTER TABLE `user_access`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT pour la table `village`
+--
+ALTER TABLE `village`
+  MODIFY `id_village` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3008;
+COMMIT;
+
