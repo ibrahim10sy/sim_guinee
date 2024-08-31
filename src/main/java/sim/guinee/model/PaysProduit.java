@@ -9,7 +9,7 @@ import lombok.Data;
 public class PaysProduit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPaysProduit;
+    private Long idPaysProduit;
 
     @Column(nullable = false, length = 30)
     private String codePaysProduit;

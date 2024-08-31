@@ -11,7 +11,7 @@ public class RegionNaturelle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRegionNaturelle;
+    private Long idRegionNaturelle;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String nomRegionNaturelle;

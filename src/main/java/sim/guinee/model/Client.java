@@ -12,7 +12,7 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idClient;
+    private Long idClient;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String nomClient;
@@ -27,7 +27,7 @@ public class Client {
     private String localite;
 
     @Column(nullable = false, columnDefinition = "INT(11) DEFAULT 0")
-    private int typeClient;
+    private Long typeClient;
 
     @Column(nullable = true)
     private LocalDate dateEnregistrement;

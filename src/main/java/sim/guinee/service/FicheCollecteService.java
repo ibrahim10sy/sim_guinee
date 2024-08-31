@@ -17,7 +17,7 @@ public class FicheCollecteService {
         return fRepository.save(f);
     }
 
-    public FicheCollecte update(FicheCollecte f, int id){
+    public FicheCollecte update(FicheCollecte f, Long id){
         FicheCollecte fc = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune fiche de collecte trouvée") );
         fc.setEnquete(f.getEnquete());
         fc.setStatut(f.getStatut());
@@ -25,7 +25,7 @@ public class FicheCollecteService {
         return fRepository.save(fc);
     }
 
-    public FicheCollecte getById(int id){
+    public FicheCollecte getById(Long id){
         return fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune fiche de collecte trouvée") );
     }
 
@@ -39,7 +39,7 @@ public class FicheCollecteService {
         return fc;
     }
 
-    public List<FicheCollecte> getAllByEnquete(int id){
+    public List<FicheCollecte> getAllByEnquete(Long id){
         List<FicheCollecte> fc =  fRepository.findByEnquete(id);
 
         if(fc.isEmpty()){
@@ -49,7 +49,7 @@ public class FicheCollecteService {
         return fc;
     }
     
-    public String delete(Integer id){
+    public String delete(Long  id){
         FicheCollecte f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune fiche de collecte trouvée") );
         fRepository.delete(f);
         return "Fiche de collecte supprimée avec succès";

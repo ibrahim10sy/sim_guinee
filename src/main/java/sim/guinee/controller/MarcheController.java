@@ -25,13 +25,13 @@ public class MarcheController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<Marche> updateMarche(@PathVariable int id, @RequestBody Marche a ){
+    public ResponseEntity<Marche> updateMarche(@PathVariable Long id, @RequestBody Marche a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'un Marche à travers id")
-    public ResponseEntity<Marche> getById(@PathVariable int id) {
+    public ResponseEntity<Marche> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
@@ -43,7 +43,7 @@ public class MarcheController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'un Marche en  fonction de l'id ")
-    public String deleteMarche(@PathVariable int id) {
+    public String deleteMarche(@PathVariable Long id) {
         return aService.deleteMarche(id);
     }
 

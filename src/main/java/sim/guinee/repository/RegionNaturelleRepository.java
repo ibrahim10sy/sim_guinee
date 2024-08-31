@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.RegionNaturelle;
 
 @Repository
-public interface RegionNaturelleRepository extends JpaRepository<RegionNaturelle, Integer>{
+public interface RegionNaturelleRepository extends JpaRepository<RegionNaturelle, Long >{
 
     RegionNaturelle findByNomRegionNaturelle(String nomRegionNaturelle);
     

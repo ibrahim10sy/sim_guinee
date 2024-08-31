@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Client;
 
 @Repository
-public interface ClientRepository  extends JpaRepository<Client,Integer>{
+public interface ClientRepository  extends JpaRepository<Client,Long >{
 } 

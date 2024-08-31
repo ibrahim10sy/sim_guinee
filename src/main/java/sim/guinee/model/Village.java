@@ -1,6 +1,5 @@
 package sim.guinee.model;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,45 +13,46 @@ public class Village {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idVillage;
+    private Long idVillage;
 
     @Column(length = 20, nullable = false)
     private String codeVillage;
 
     @Column(length = 20, nullable = false)
-    private String commune;
+    private Long commune;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String nomVillage;
 
-    @Column(length = 10,nullable= true)
+    @Column(length = 10, nullable = true)
     private String abregeVillage;
 
+    // Utilisation de Long  au lieu de int
     @Column(length = 11, nullable = true)
-    private int homme;
+    private Long  homme;
 
     @Column(length = 11, nullable = true)
-    private int femme;
+    private Long  femme;
 
     @Column(length = 11, nullable = true)
-    private int jeune;
+    private Long  jeune;
 
     @Column(length = 11, nullable = true)
-    private int menage;
+    private Long  menage;
 
-    @Column(columnDefinition = "TEXT",nullable=true)
+    @Column(columnDefinition = "TEXT", nullable = true)
     private String idPersonnel;
 
     @Column(nullable = false)
     private LocalDateTime dateEnregistrement;
 
-    @Column(length = 10,nullable = true)
+    @Column(length = 10, nullable = true)
     private String etat;
 
-    @Column(columnDefinition = "TEXT",nullable = true)
+    @Column(columnDefinition = "TEXT", nullable = true)
     private String modifierPar;
 
     @Column(nullable = true)
     private LocalDate modifierLe;
- 
+
 }

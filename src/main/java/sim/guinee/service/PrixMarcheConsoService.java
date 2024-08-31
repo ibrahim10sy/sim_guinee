@@ -22,8 +22,8 @@ public class PrixMarcheConsoService {
         return pRepository.save(p);
     }
 
-    public PrixMarcheConsommation update(PrixMarcheConsommation p , int id){
-        PrixMarcheConsommation pr = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix grossiste trouvé") );
+    public PrixMarcheConsommation update(PrixMarcheConsommation p , Long id){
+        PrixMarcheConsommation pr = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix consommation trouvé") );
 
         pr.setEnquete(p.getEnquete());
         pr.setProduit(p.getProduit());
@@ -47,27 +47,27 @@ public class PrixMarcheConsoService {
     public List<PrixMarcheConsommation> getAll(){
         List<PrixMarcheConsommation> pList = pRepository.findAll();
         if(pList.isEmpty()){
-            throw new IllegalStateException("Aucun prix grossiste trouvé");
+            throw new IllegalStateException("Aucun prix consommation trouvé");
         }
 
         return pList;
     }
 
-    public List<PrixMarcheConsommation> getAllByProduit(String nom){
-        List<PrixMarcheConsommation> pList = pRepository.findByProduit(nom);
+    public List<PrixMarcheConsommation> getAllByProduit(String produit){
+        List<PrixMarcheConsommation> pList = pRepository.findByProduit(produit);
         if(pList.isEmpty()){
-            throw new IllegalStateException("Aucun prix grossiste trouvé");
+            throw new IllegalStateException("Aucun prix consommation trouvé");
         }
 
         return pList;
     }
 
-    public PrixMarcheConsommation getById(int id){
-        return pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix grossiste non trouvé") );
+    public PrixMarcheConsommation getById(Long id){
+        return pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix consommation non trouvé") );
     }
    
-    public String deletePrix(int id){
-        PrixMarcheConsommation p = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix grossiste non trouvé") );
+    public String deletePrix(Long id){
+        PrixMarcheConsommation p = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix consommation non trouvé") );
         pRepository.delete(p);
         return "Prix consommation supprimé avec succès";
     }   

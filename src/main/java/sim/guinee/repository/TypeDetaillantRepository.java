@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.TypeDetaillant;
 
 @Repository
-public interface TypeDetaillantRepository extends JpaRepository<TypeDetaillant, Integer> {
+public interface TypeDetaillantRepository extends JpaRepository<TypeDetaillant, Long > {
     
 }

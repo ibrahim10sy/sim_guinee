@@ -25,7 +25,7 @@ public class MagasinService {
         return mRepository.save(m);
     }
 
-    public Magasin update(Magasin m, int id){
+    public Magasin update(Magasin m, Long id){
         Magasin ma = mRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun magasin trouvé") );
         
         ma.setNomMagasin(m.getNomMagasin());
@@ -40,7 +40,7 @@ public class MagasinService {
         return mRepository.save(ma);
     }
 
-    public Magasin getById(int id){
+    public Magasin getById(Long id){
         return mRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun magasin trouvé") );
     }
 
@@ -53,8 +53,8 @@ public class MagasinService {
         return m;
     }
 
-    public List<Magasin> getAllByLocalite(String localite){
-        List<Magasin> m =  mRepository.findByLocaliteMagasin(localite);
+    public List<Magasin> getAllByLocalite(String localiteMagasin){
+        List<Magasin> m =  mRepository.findByLocaliteMagasin(localiteMagasin);
 
         if(m.isEmpty()){
             throw new IllegalStateException("Aucun magasin trouvé");
@@ -62,8 +62,8 @@ public class MagasinService {
         return m;
     }
 
-    public List<Magasin> getAllByMarche(String nom){
-        List<Magasin> m =  mRepository.findByNomMarche(nom);
+    public List<Magasin> getAllByMarche(String nomMarche){
+        List<Magasin> m =  mRepository.findByNomMarche(nomMarche);
 
         if(m.isEmpty()){
             throw new IllegalStateException("Aucun magasin trouvé");
@@ -71,7 +71,7 @@ public class MagasinService {
         return m;
     }
 
-     public String deleteMagasin(int id){
+     public String deleteMagasin(Long id){
         Magasin m = mRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun magasin trouvé") );
 
         mRepository.delete(m);

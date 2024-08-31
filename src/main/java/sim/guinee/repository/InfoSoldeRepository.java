@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.InfoSolde;
 
 @Repository
-public interface InfoSoldeRepository  extends JpaRepository<InfoSolde,Integer>{
+public interface InfoSoldeRepository  extends JpaRepository<InfoSolde,Long >{
 
 }

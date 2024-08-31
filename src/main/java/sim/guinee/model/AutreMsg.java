@@ -12,7 +12,7 @@ public class AutreMsg {
 
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(columnDefinition = "TEXT",nullable = true)
     private String expediteur;

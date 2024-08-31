@@ -22,7 +22,7 @@ public class PrixMarcheCollecteService {
         return pRepository.save(p);
     }
 
-    public PrixMarcheCollecte update(PrixMarcheCollecte p , int id){
+    public PrixMarcheCollecte update(PrixMarcheCollecte p , Long id){
         PrixMarcheCollecte pr = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix grossiste trouvé") );
 
         pr.setEnquete(p.getEnquete());
@@ -59,8 +59,8 @@ public class PrixMarcheCollecteService {
         return pList;
     }
 
-    public List<PrixMarcheCollecte> getAllByProduit(String nom){
-        List<PrixMarcheCollecte> pList = pRepository.findByProduit(nom);
+    public List<PrixMarcheCollecte> getAllByProduit(String produit){
+        List<PrixMarcheCollecte> pList = pRepository.findByProduit(produit);
         if(pList.isEmpty()){
             throw new IllegalStateException("Aucun prix grossiste trouvé");
         }
@@ -68,8 +68,8 @@ public class PrixMarcheCollecteService {
         return pList;
     }
 
-    public List<PrixMarcheCollecte> getAllByGrossiste(String nom){
-        List<PrixMarcheCollecte> pList = pRepository.findByLocaliteOrigine(nom);
+    public List<PrixMarcheCollecte> getAllByLocalite(String localiteOrigine){
+        List<PrixMarcheCollecte> pList = pRepository.findByLocaliteOrigine(localiteOrigine);
         if(pList.isEmpty()){
             throw new IllegalStateException("Aucun prix grossiste trouvé");
         }
@@ -77,11 +77,11 @@ public class PrixMarcheCollecteService {
         return pList;
     }
   
-    public PrixMarcheCollecte getById(int id){
+    public PrixMarcheCollecte getById(Long id){
         return pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix grossiste trouvé") );
     }
     
-    public String deletePrix(int id){
+    public String deletePrix(Long id){
         PrixMarcheCollecte p = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix grossiste non trouvé") );
         pRepository.delete(p);
         return "Prix grossiste supprimé avec succès";

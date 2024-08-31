@@ -17,7 +17,7 @@ public class InfoSoldeService {
         return iRepository.save(i);
     }
 
-    public InfoSolde update(InfoSolde i, int id){
+    public InfoSolde update(InfoSolde i, Long id){
         InfoSolde si = iRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun solde trouvé") );
         si.setDate(i.getDate());
         si.setStatut(i.getStatut());
@@ -34,11 +34,11 @@ public class InfoSoldeService {
         return i;
     }
 
-    public InfoSolde getInfoById(int id){
+    public InfoSolde getInfoById(Long id){
         return iRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun solde trouvé") );
     }
     
-    public String deleteInfo(int id){
+    public String deleteInfo(Long id){
         InfoSolde si = iRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun solde trouvé") );
         iRepository.delete(si);
         return "Supprimé avec succèss";

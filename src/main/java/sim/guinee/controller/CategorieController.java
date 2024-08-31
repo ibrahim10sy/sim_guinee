@@ -23,7 +23,7 @@ public class CategorieController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification de categorie de produit à travers son id")
-    public ResponseEntity<CategorieProduit> updateCategories(@PathVariable int id, @RequestBody CategorieProduit categorieProduit) {
+    public ResponseEntity<CategorieProduit> updateCategories(@PathVariable Long id, @RequestBody CategorieProduit categorieProduit) {
         return new ResponseEntity<>(categorieService.update(categorieProduit, id), HttpStatus.OK);
     }
 
@@ -35,13 +35,13 @@ public class CategorieController {
   
     @GetMapping("/allByFamilleProduit/{nomFamille}")
     @Operation(summary="Récuperation de tout les catégories ")
-    public ResponseEntity<List<CategorieProduit>> getAllByFamille(@PathVariable String nom) {
-        return new ResponseEntity<>(categorieService.getAllByFamilleProduit(nom), HttpStatus.OK);
+    public ResponseEntity<List<CategorieProduit>> getAllByFamille(@PathVariable String familleProduit) {
+        return new ResponseEntity<>(categorieService.getAllByFamilleProduit(familleProduit), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé de catégories de produit en fonction de l'id ")
-    public String deleteFilieres(@PathVariable int id) {
+    public String deleteFilieres(@PathVariable Long id) {
         return categorieService.deleteCategorieProduit(id);
     }
 

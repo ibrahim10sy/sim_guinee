@@ -17,7 +17,7 @@ public class RegionProduitService {
     @Autowired
     CodeGenerator codeGenerator;
 
-    public RegionProduit creer(RegionProduit r ){
+    public RegionProduit create(RegionProduit r ){
         RegionProduit re = rRepository.findByNomRegionProduit(r.getNomRegionProduit());
 
         if(re != null){
@@ -30,7 +30,7 @@ public class RegionProduitService {
         return rRepository.save(r);
     }
 
-    public RegionProduit update(RegionProduit r, int id){
+    public RegionProduit update(RegionProduit r, Long id){
         RegionProduit re = rRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune région trouvé") );
 
         re.setNomRegionProduit(r.getNomRegionProduit());
@@ -52,7 +52,7 @@ public class RegionProduitService {
         return rList;
     }
 
-    public String deleteRegionProduit(int id){
+    public String deleteRegionProduit(Long id){
         RegionProduit r = rRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune région trouvé") );
         rRepository.delete(r);
         return "Supprimée avec succès";

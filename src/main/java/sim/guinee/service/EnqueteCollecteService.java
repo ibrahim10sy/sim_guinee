@@ -20,7 +20,7 @@ public class EnqueteCollecteService {
         return fRepository.save(f);
     }
 
-    public EnqueteCollecte update(EnqueteCollecte f, int id){
+    public EnqueteCollecte update(EnqueteCollecte f, Long id){
         EnqueteCollecte fo = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("EnqueteCollecte non trouvé") );
         
         fo.setNumFiche(f.getNumFiche());
@@ -34,7 +34,7 @@ public class EnqueteCollecteService {
         return fRepository.save(fo);
     }
 
-    public EnqueteCollecte getById(int id) {
+    public EnqueteCollecte getById(Long id) {
         return fRepository.findById(id).orElseThrow(() -> new IllegalStateException("EnqueteCollecte non trouvé") );
     }
 
@@ -48,7 +48,7 @@ public class EnqueteCollecteService {
         return fList;
     }
 
-    public String deleteEnqueteCollecte(int id ){
+    public String deleteEnqueteCollecte(Long id ){
         EnqueteCollecte f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("EnqueteCollecte non trouvé") );
         fRepository.delete(f);
         return "Supprimé avec succèss";

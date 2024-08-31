@@ -26,13 +26,13 @@ public class VillageService {
         }
 
         String code = codeGenerator.genererCode();
-        vi.setDateEnregistrement(LocalDateTime.now());
-        vi.setCodeVillage(code);
+        v.setDateEnregistrement(LocalDateTime.now());
+        v.setCodeVillage(code);
         return vRepository.save(v);
     }
 
 
-    public Village update(Village v, int id) {
+    public Village update(Village v, Long id) {
         Village vi = vRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun village  trouvé") );
 
         vi.setCommune(v.getCommune());
@@ -58,8 +58,9 @@ public class VillageService {
 
         return v;
     }
-    public List<Village> getAllByCommune(String nom){
-        List<Village> v = vRepository.findByCommune(nom);
+    
+    public List<Village> getAllByCommune(Long id){
+        List<Village> v = vRepository.findByCommune(id);
        
         if(v.isEmpty()){
             throw new IllegalStateException("Aucun village trouvé");
@@ -68,7 +69,13 @@ public class VillageService {
         return v;
     }
 
-    public String deleteVillage(int idVillage){
+    public Village getById(Long id){
+        Village sous = vRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune sous prefecture trouvé") );
+        return sous;
+
+    }
+
+    public String deleteVillage(Long idVillage){
        Village v  = vRepository.findById(idVillage).orElseThrow(() -> new IllegalStateException("Village non trouvé") );
         vRepository.delete(v);
         return "Village  supprimée avec succès";

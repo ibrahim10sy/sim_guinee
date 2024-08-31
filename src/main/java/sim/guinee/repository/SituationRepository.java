@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Situation;
 
 @Repository
-public interface SituationRepository extends JpaRepository<Situation, Integer> {
+public interface SituationRepository extends JpaRepository<Situation, Long > {
 
     List<Situation> findByDate(LocalDate date);
     

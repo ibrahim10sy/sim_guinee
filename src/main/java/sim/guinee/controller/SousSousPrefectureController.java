@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
 import sim.guinee.model.SousPrefecture;
-import sim.guinee.service.SousPrefcetureService;
+import sim.guinee.service.SousPrefectureService;
 
 @RestController
 @RequestMapping("api-sim/SousSousPrefecture")
 public class SousSousPrefectureController {
     
-      @Autowired
-    SousPrefcetureService aService;
+    @Autowired
+    SousPrefectureService aService;
 
     @PostMapping("/addSousPrefecture")
     @Operation(summary="Création de Pays Produit")
@@ -25,19 +25,19 @@ public class SousSousPrefectureController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<SousPrefecture> updateSousPrefecture(@PathVariable int id, @RequestBody SousPrefecture a ){
+    public ResponseEntity<SousPrefecture> updateSousPrefecture(@PathVariable Long id, @RequestBody SousPrefecture a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'un SousPrefecture à travers id")
-    public ResponseEntity<SousPrefecture> getById(@PathVariable int id) {
+    public ResponseEntity<SousPrefecture> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
     @GetMapping("/getAllByPrefecture/{id}")
     @Operation(summary="Récuperation de tout les sous prefectures ")
-    public ResponseEntity<List<SousPrefecture>> getAllSousPrefectureByPrefecture(@PathVariable int id) {
+    public ResponseEntity<List<SousPrefecture>> getAllSousPrefectureByPrefecture(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getAllByIdPrefecture(id), HttpStatus.OK);
     }
    
@@ -49,7 +49,7 @@ public class SousSousPrefectureController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'un Pays Produit en  fonction de l'id ")
-    public String deleteSousPrefecture(@PathVariable int id) {
+    public String deleteSousPrefecture(@PathVariable Long id) {
         return aService.deleteSousPrefecture(id);
     }
 }

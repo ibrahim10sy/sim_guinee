@@ -22,7 +22,7 @@ public class PrixMarcheConsommation {
     private String produit;
 
     @Column( nullable = false)
-    private int unite;
+    private Long unite;
 
     @Column( nullable = false)
     private double poidsUnitaire;
@@ -34,7 +34,7 @@ public class PrixMarcheConsommation {
     private double prixKgLitre;
 
     @Column( nullable = false)
-    private int niveauApprovisionnement;
+    private Long niveauApprovisionnement;
 
     @Column(columnDefinition = "TEXT",nullable=true)
     private String observation;
@@ -43,10 +43,10 @@ public class PrixMarcheConsommation {
     private String document;
 
     @Column( nullable = false)
-    private int appMobile = 0;
+    private Long appMobile = 0;
 
     @Column( nullable = false)
-    private int statut = 0;
+    private Long statut = 0;
 
     @Column(columnDefinition = "TEXT",nullable=true)
     private String idPersonnel;

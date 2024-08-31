@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.CategorieProduit;
 
 @Repository
-public interface CategorieProduitRepository  extends JpaRepository<CategorieProduit,Integer>{
+public interface CategorieProduitRepository  extends JpaRepository<CategorieProduit,Long>{
 
-    List<CategorieProduit> findByFamilleProduit(String nom);
+    List<CategorieProduit> findByFamilleProduit(String familleProduit);
 } 

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Prefecture;
 
 @Repository
-public interface PrefectureRepository extends JpaRepository<Prefecture, Integer> {
+public interface PrefectureRepository extends JpaRepository<Prefecture, Long> {
 
     Prefecture findByNomPrefecture(String nomPrefecture);
 
-    public List<Prefecture> findByRegion(int region);
+    public List<Prefecture> findByRegion(Long region);
     
 }

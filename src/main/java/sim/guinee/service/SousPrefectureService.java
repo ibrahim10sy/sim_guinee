@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class SousPrefcetureService {
+public class SousPrefectureService {
  
     @Autowired 
     SousPRepository sRepository;
@@ -26,7 +26,7 @@ public class SousPrefcetureService {
         return sRepository.save(s);
     }
 
-    public SousPrefecture update(SousPrefecture s, int id){
+    public SousPrefecture update(SousPrefecture s, Long id){
         SousPrefecture sous = sRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune sous prefecture trouvé") );
 
         sous.setNomSousPrefecture(s.getNomSousPrefecture());
@@ -46,7 +46,7 @@ public class SousPrefcetureService {
 
         return sousList;
     }
-    public List<SousPrefecture> getAllByIdPrefecture(int id ){
+    public List<SousPrefecture> getAllByIdPrefecture(Long id ){
         List<SousPrefecture> sousList = sRepository.findByPrefecture(id);
         
         if(sousList.isEmpty()){
@@ -56,16 +56,16 @@ public class SousPrefcetureService {
         return sousList;
     }
 
-    public SousPrefecture getById(int id){
+    public SousPrefecture getById(Long id){
         SousPrefecture sous = sRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune sous prefecture trouvé") );
         return sous;
 
     }
-    public String deleteSousPrefecture(int id){
+    public String deleteSousPrefecture(Long id){
         SousPrefecture s = sRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune sous prefecture non trouvé") );
 
         sRepository.delete(s);
-        return "Aucune sous prefecture trouvé";
+        return "Sous prefecture supprimé";
     }
 
 

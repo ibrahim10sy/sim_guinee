@@ -25,7 +25,7 @@ public class PrixMarcheGrossiste {
     private String produit;
 
     @Column(nullable=false)
-    private int uniteStock;
+    private Long uniteStock;
 
     @Column(nullable=false)
     private double nombreUniteStock;
@@ -37,7 +37,7 @@ public class PrixMarcheGrossiste {
     private double poidsStock;
 
     @Column(nullable=false)
-    private int uniteAchat;
+    private Long uniteAchat;
 
     @Column(nullable=false)
     private double nombreUniteAchat;
@@ -55,7 +55,7 @@ public class PrixMarcheGrossiste {
     private int fournisseurAchat = 0;
 
     @Column(nullable=false)
-    private int uniteVente;
+    private Long uniteVente;
 
     @Column(nullable=false)
     private double nombreUniteVente;
@@ -70,7 +70,7 @@ public class PrixMarcheGrossiste {
     private double prixUnitaireVente;
 
     @Column(nullable=false)
-    private int clientVente;
+    private Long clientVente;
 
     @Column(length = 100, nullable = false)
     private String localiteVente;

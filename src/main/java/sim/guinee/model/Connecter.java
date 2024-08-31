@@ -12,7 +12,7 @@ public class Connecter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_connexion")
-    private int idConnexion;
+    private Long idConnexion;
 
     @Column(length = 50, nullable = false)
     private String personnel;

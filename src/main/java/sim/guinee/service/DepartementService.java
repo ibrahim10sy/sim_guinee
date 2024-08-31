@@ -32,7 +32,7 @@ public class DepartementService {
     }
 
 
-    public Departement update(Departement v, int id) {
+    public Departement update(Departement v, Long id) {
         Departement vi = vRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun Departement  trouvé") );
 
         vi.setRegion(v.getRegion());
@@ -65,7 +65,7 @@ public class DepartementService {
         return v;
     }
 
-    public String deleteDepartement(int idDepartement){
+    public String deleteDepartement(Long idDepartement){
        Departement v  = vRepository.findById(idDepartement).orElseThrow(() -> new IllegalStateException("Departement non trouvé") );
         vRepository.delete(v);
         return "Departement  supprimée avec succès";

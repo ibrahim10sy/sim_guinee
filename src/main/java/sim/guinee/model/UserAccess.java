@@ -13,10 +13,10 @@ public class UserAccess {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(nullable = false)
-    private int idPersonnel;
+    private Long idPersonnel;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String pageEdit;
@@ -31,7 +31,7 @@ public class UserAccess {
     private String pageInterd;
 
     @Column(nullable = false)
-    private int personnel;
+    private Long personnel;
 
     @Column(nullable = false)
     private LocalDate dateEnregistrement;

@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.SousPrefecture;
 
 @Repository
-public interface SousPRepository  extends  JpaRepository<SousPrefecture, Integer>{
+public interface SousPRepository  extends  JpaRepository<SousPrefecture, Long >{
 
     SousPrefecture findByNomSousPrefecture(String nomSousPrefecture);
 
-    List<SousPrefecture> findByPrefecture(int id);
+    List<SousPrefecture> findByPrefecture(Long id);
 }

@@ -25,7 +25,7 @@ public class EnqueteConsommationController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<EnqueteConsommation> updateEnqueteConsommation(@PathVariable int id, @RequestBody EnqueteConsommation a ){
+    public ResponseEntity<EnqueteConsommation> updateEnqueteConsommation(@PathVariable Long id, @RequestBody EnqueteConsommation a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
@@ -37,12 +37,12 @@ public class EnqueteConsommationController {
 
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'une enquete consommation  à travers id")
-    public ResponseEntity<EnqueteConsommation> getById(@PathVariable int id) {
+    public ResponseEntity<EnqueteConsommation> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé une Enquete consommation  en  fonction de l'id ")
-    public String deleteEnqueteConsommation(@PathVariable int id) {
+    public String deleteEnqueteConsommation(@PathVariable Long id) {
         return aService.deleteEnqueteConsommation(id);
     }
 

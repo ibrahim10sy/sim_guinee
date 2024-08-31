@@ -1,0 +1,12 @@
+package sim.guinee.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import sim.guinee.model.MessageWa;
+
+
+public interface MessageWaRepository extends JpaRepository<MessageWa , Long > {
+     
+}

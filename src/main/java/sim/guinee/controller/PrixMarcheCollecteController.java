@@ -26,27 +26,27 @@ public class PrixMarcheCollecteController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<PrixMarcheCollecte> updatePrixMarcheCollecte(@PathVariable int id, @RequestBody PrixMarcheCollecte a ){
+    public ResponseEntity<PrixMarcheCollecte> updatePrixMarcheCollecte(@PathVariable Long id, @RequestBody PrixMarcheCollecte a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'un PrixMarcheCollecte à travers id")
-    public ResponseEntity<PrixMarcheCollecte> getById(@PathVariable int id) {
+    public ResponseEntity<PrixMarcheCollecte> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/getAllByProduit/{nomProduit}")
+    @GetMapping("/getAllByProduit/{produit}")
     @Operation(summary="Récuperation de tout les prix marche  Produits ")
-    public ResponseEntity<List<PrixMarcheCollecte>> getAllPrixMarcheCollecteByProduit(@PathVariable String nom) {
-        return new ResponseEntity<>(aService.getAllByProduit(nom), HttpStatus.OK);
+    public ResponseEntity<List<PrixMarcheCollecte>> getAllPrixMarcheCollecteByProduit(@PathVariable String produit) {
+        return new ResponseEntity<>(aService.getAllByProduit(produit), HttpStatus.OK);
     }
    
 
-    @GetMapping("/getAllByGrossiste/{nomGrossiste}")
-    @Operation(summary="Récuperation de tout les prix marche  par grossiste ")
-    public ResponseEntity<List<PrixMarcheCollecte>> getAllPrixMarcheCollecteByGrossiste(@PathVariable String nom) {
-        return new ResponseEntity<>(aService.getAllByGrossiste(nom), HttpStatus.OK);
+    @GetMapping("/getAllByLocalite/{nomGrossiste}")
+    @Operation(summary="Récuperation de tout les prix marche  par localité ")
+    public ResponseEntity<List<PrixMarcheCollecte>> getAllPrixMarcheCollecteByLoc(@PathVariable String localiteOrigine) {
+        return new ResponseEntity<>(aService.getAllByLocalite(localiteOrigine), HttpStatus.OK);
     }
    
     @GetMapping("/getAllPrixMarcheCollecte")
@@ -57,7 +57,7 @@ public class PrixMarcheCollecteController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'un Pays Produit en  fonction de l'id ")
-    public String deletePrixMarcheCollecte(@PathVariable int id) {
+    public String deletePrixMarcheCollecte(@PathVariable Long id) {
         return aService.deletePrix(id);
     }
 }

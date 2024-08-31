@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Commune;
 
 @Repository
-public interface CommuneRepository extends JpaRepository<Commune, Integer> {
+public interface CommuneRepository extends JpaRepository<Commune, Long > {
 
     Commune findByNomCommune(String nomCommune);
 

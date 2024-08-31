@@ -19,7 +19,7 @@ public class ClientService {
         return fRepository.save(f);
     }
 
-    public Client update(Client f, int id){
+    public Client update(Client f, Long id){
         Client fo = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Client non trouvé") );
         
         fo.setNomClient(f.getNomClient());
@@ -33,7 +33,7 @@ public class ClientService {
         return fRepository.save(fo);
     }
 
-    public Client getById(int id) {
+    public Client getById(Long id) {
         return fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Client non trouvé") );
     }
 
@@ -47,7 +47,7 @@ public class ClientService {
         return fList;
     }
 
-    public String deleteClient(int id ){
+    public String deleteClient(Long id ){
         Client f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Client non trouvé") );
         fRepository.delete(f);
         return "Supprimé avec succèss";

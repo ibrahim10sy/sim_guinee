@@ -13,21 +13,21 @@ public class Situation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(nullable = false)
-    private int idid;
+    private Long idid;
 
     @Column(length = 20, nullable = false)
     private String contact;
 
     @Column(nullable = false)
-    private int nombre;
+    private Long nombre;
 
     @Column(nullable = false)
     private LocalDate date;
 
     @Column(nullable = false)
-    private int position;
+    private Long position;
 
 }

@@ -20,7 +20,7 @@ public class AgendaPersoService {
         return aRepository.save(a);
     }
 
-    public AgendaPerso update(AgendaPerso a, int id){
+    public AgendaPerso update(AgendaPerso a, Long id){
         AgendaPerso ag = aRepository.findById(id).orElseThrow(() -> new IllegalStateException("AgendaPerso non trouvé") );
 
         ag.setExpediteur(a.getExpediteur());
@@ -59,11 +59,11 @@ public class AgendaPersoService {
         return a;
     }
 
-    public  AgendaPerso getAgendaPersoById(int id) {
+    public  AgendaPerso getAgendaPersoById(Long id) {
         return aRepository.findById(id).orElseThrow(() -> new IllegalStateException("Agenda non trouvé") );
     }
 
-    public  String deleteAgenda(int id) {
+    public  String deleteAgenda(Long id) {
         AgendaPerso a = aRepository.findById(id).orElseThrow(() -> new IllegalStateException("Agenda non trouvé") );
 
         aRepository.delete(a);

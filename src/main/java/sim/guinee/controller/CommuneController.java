@@ -26,7 +26,7 @@ public class CommuneController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<Commune> updateCommune(@PathVariable int id, @RequestBody Commune a ){
+    public ResponseEntity<Commune> updateCommune(@PathVariable Long id, @RequestBody Commune a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
@@ -44,7 +44,7 @@ public class CommuneController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'une commune  en  fonction de l'id ")
-    public String deleteCommune(@PathVariable int id) {
+    public String deleteCommune(@PathVariable Long id) {
         return aService.deleteCommune(id);
     }
 }

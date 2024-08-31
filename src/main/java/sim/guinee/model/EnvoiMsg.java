@@ -13,28 +13,28 @@ public class EnvoiMsg {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(columnDefinition = "TEXT", nullable=true)
     private String region;
 
     @Column(nullable=true)
-    private int collecteur;
+    private Long collecteur;
 
     @Column(nullable=true)
-    private int relai;
+    private Long relai;
 
     @Column(nullable=true)
-    private int abonne;
+    private Long abonne;
 
     @Column(nullable=true)
-    private int radio;
+    private Long radio;
 
     @Column(nullable=true)
-    private int ca;
+    private Long ca;
 
     @Column(nullable = false)
-    private int uropc;
+    private Long uropc;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String msg;

@@ -14,13 +14,17 @@ public class GrossisteService {
     
      @Autowired
     GrossisteRepository fRepository;
+    @Autowired
+    CodeGenerator codeGenerator;
 
     public Grossiste create(Grossiste f){
         f.setDateEnregistrement(LocalDate.now());
+        String code = codeGenerator.genererCode();
+        f.setCode(code);
         return fRepository.save(f);
     }
 
-    public Grossiste update(Grossiste f, int id){
+    public Grossiste update(Grossiste f, Long id){
         Grossiste fo = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Grossiste non trouvé") );
         
         fo.setNom(f.getNom());
@@ -33,7 +37,7 @@ public class GrossisteService {
         return fRepository.save(fo);
     }
 
-    public Grossiste getById(int id) {
+    public Grossiste getById(Long id) {
         return fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Grossiste non trouvé") );
     }
 
@@ -47,7 +51,7 @@ public class GrossisteService {
         return fList;
     }
 
-    public String deleteGrossiste(int id ){
+    public String deleteGrossiste(Long id ){
         Grossiste f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Grossiste non trouvé") );
         fRepository.delete(f);
         return "Supprimé avec succèss";

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Marche;
 
 @Repository
-public interface MarcheRepository extends JpaRepository<Marche , Integer>{
+public interface MarcheRepository extends JpaRepository<Marche , Long >{
 
     List<Marche> findByLocalite(String localite);
 

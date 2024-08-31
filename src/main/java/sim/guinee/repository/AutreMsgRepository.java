@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.AutreMsg;
 
 @Repository
-public interface AutreMsgRepository  extends JpaRepository<AutreMsg,Integer>{
+public interface AutreMsgRepository  extends JpaRepository<AutreMsg,Long>{
 
 } 

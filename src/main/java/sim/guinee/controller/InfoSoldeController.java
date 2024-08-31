@@ -26,13 +26,13 @@ public class InfoSoldeController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<InfoSolde> updateInfoSolde(@PathVariable int id, @RequestBody InfoSolde a ){
+    public ResponseEntity<InfoSolde> updateInfoSolde(@PathVariable Long id, @RequestBody InfoSolde a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'un InfoSolde à travers id")
-    public ResponseEntity<InfoSolde> getById(@PathVariable int id) {
+    public ResponseEntity<InfoSolde> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getInfoById(id), HttpStatus.OK);
     }
 
@@ -44,7 +44,7 @@ public class InfoSoldeController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'un InfoSolde en  fonction de l'id ")
-    public String deleteInfoSolde(@PathVariable int id) {
+    public String deleteInfoSolde(@PathVariable Long id) {
         return aService.deleteInfo(id);
     }
 

@@ -10,7 +10,7 @@ public class CategorieProduit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCategorieProduit;
+    private Long idCategorieProduit;
 
     @Column(length = 30, nullable = false)
     private String codeCategorieProduit;

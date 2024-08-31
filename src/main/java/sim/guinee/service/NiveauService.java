@@ -20,17 +20,17 @@ public class NiveauService {
         return nRepository.save(n);
     }
 
-    public NiveauApprovisionement update(NiveauApprovisionement n, int id){
+    public NiveauApprovisionement update(NiveauApprovisionement n, Long id){
         NiveauApprovisionement ni = nRepository.findById(id).orElseThrow(() -> new IllegalStateException("Niveau d'approvisionnement non trouvé") );
 
-        ni.setNiveauApprovisionnement(n.getNiveauApprovisionnement());
+        ni.setNiveauApprovisionement(n.getNiveauApprovisionement());
         ni.setModifierPar(n.getModifierPar());
         ni.setModifierLe(n.getModifierLe());
 
         return nRepository.save(ni);
     }
 
-    public NiveauApprovisionement getById(int id){
+    public NiveauApprovisionement getById(Long id){
         return nRepository.findById(id).orElseThrow(() -> new IllegalStateException("Niveau d'approvisionnement non trouvé") );
     }
 
@@ -42,7 +42,7 @@ public class NiveauService {
         return nList;
     }
 
-    public String deleteNiveau(int id){
+    public String deleteNiveau(Long id){
         NiveauApprovisionement n = nRepository.findById(id).orElseThrow(() -> new IllegalStateException("Niveau d'approvisionnement non trouvé") );
 
         nRepository.delete(n);

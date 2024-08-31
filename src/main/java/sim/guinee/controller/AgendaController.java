@@ -25,7 +25,7 @@ public class AgendaController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification d'un agenda à travers id")
-    public ResponseEntity<AgendaPerso> updateAgenda(@PathVariable int id, @RequestBody AgendaPerso a ){
+    public ResponseEntity<AgendaPerso> updateAgenda(@PathVariable Long id, @RequestBody AgendaPerso a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
   
@@ -37,7 +37,7 @@ public class AgendaController {
 
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'un agenda")
-    public ResponseEntity<AgendaPerso> getAgendaById(@PathVariable int id) {
+    public ResponseEntity<AgendaPerso> getAgendaById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getAgendaPersoById(id), HttpStatus.OK);
     }
 
@@ -49,7 +49,7 @@ public class AgendaController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'un agenda en  fonction de l'id ")
-    public String delete(@PathVariable int id) {
+    public String delete(@PathVariable Long id) {
         return aService.deleteAgenda(id);
     }
 }

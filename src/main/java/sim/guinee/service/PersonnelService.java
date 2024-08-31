@@ -9,6 +9,8 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,13 +29,17 @@ public class PersonnelService {
     PersonnelRepository pRepository;
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    SendMessage sendMessage;
+    @Autowired
+    CodeGenerator codeGenerator;
 
     public Personnel create(Personnel p , MultipartFile avatar) throws Exception{
         
         if(p.getContact() != null){
             Personnel per = pRepository.findByContact(p.getContact());
             if (per != null) {
-                // Si un acteur avec le même numéro de téléphone et le même numéro WhatsApp existe déjà
+                // Si un Personnel avec le même numéro de téléphone et le même numéro WhatsApp existe déjà
                 throw new IllegalArgumentException("Un compte avec le même contact existe déjà");
             }
         }
@@ -41,7 +47,7 @@ public class PersonnelService {
         if(p.getEmail() != null){
             Personnel per = pRepository.findByEmail(p.getEmail());
             if (per != null) {
-                // Si un acteur avec le même numéro de téléphone et le même numéro WhatsApp existe déjà
+                // Si un Personnel avec le même numéro de téléphone et le même numéro WhatsApp existe déjà
                 throw new IllegalArgumentException("Un compte avec le même email existe déjà");
             }
         }
@@ -67,11 +73,12 @@ public class PersonnelService {
             //On hashe le mot de passe
             String passWordHasher = passwordEncoder.encode(p.getPass());
             p.setPass(passWordHasher);
-
+            String code = codeGenerator.genererCode();
+            p.setCode(code);
             return pRepository.save(p);
     }
 
-    public Personnel update(Personnel p , int id, MultipartFile avatar) throws Exception{
+    public Personnel update(Personnel p , Long id, MultipartFile avatar) throws Exception{
         Personnel per = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun personnel trouvé") );
 
         per.setTitre(p.getTitre());
@@ -105,7 +112,7 @@ public class PersonnelService {
         return pRepository.save(per);
     }
 
-    public List<Personnel> getAlll(){
+    public List<Personnel> getAll(){
         List<Personnel> pList = pRepository.findAll();
 
         if(pList.isEmpty()){
@@ -115,20 +122,74 @@ public class PersonnelService {
         return pList;
     }
     
-    public String deletePersonnel(int id){
+    public String deletePersonnel(Long id){
         pRepository.deleteById(id);
         return "Personnel supprimé avec succès";
     }
 
-    //  public Acteur connexionActeur(String emailActeur, String password){
-    //     Acteur acteur = acteurRepository.findByEmailActeur(emailActeur);
-    //     if (acteur == null || !passwordEncoder.matches(password, acteur.getPassword())) {
-    //         throw new EntityNotFoundException("Email ou mot de passe incorrect");
-    //     }
+    public Personnel activer(Long id ){
+        Personnel per = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun personnel trouvé") );
+
+        per.setStatut(1);
+        return  pRepository.save(per);
+    }
+
+    private String getRandomNumberString() {
+        // It will generate 6 digit random Number.
+        // from 0 to 999999
+        Random rnd = new Random();
+        int number = rnd.nextInt(9999);
+
+        // this will convert any number sequence into 4 character.
+        return String.format("%04d", number);
+    }
+ 
+    public String sendOtpCodeWhatsApp(String whatsAppActeur) throws Exception {
+        Personnel userVerif = pRepository.findByContact(whatsAppActeur);
+
+        if (userVerif == null){
+            throw new Exception("Ce numero n'existe pas, verifier  le numero saisi");
+        }
         
-    //     if(acteur.getStatutActeur()==false){
-    //         throw new NoContentException("Connexion échoué votre compte  est desactivé \n veuillez contacter l'administrateur pour la procedure d'activation de votre compte !");
-    //     }
-    //     return acteur;
-    //     }
+        String code = getRandomNumberString();
+        String msg = "Votre code de vérification  est " + code + " veuillez garder ce code pour vous uniquement si vous n'avez pas demander à changer de mot de passe veuiilez ignorer ce message";
+        sendMessage.sendMessages(whatsAppActeur, msg);
+        return code;
+    }
+
+    public Personnel updatePassWord(Long id, String newPassWord) throws Exception {
+        Optional<Personnel> personnelOpt = pRepository.findById(id);
+    
+        if (personnelOpt.isPresent()) {
+            Personnel personnel = personnelOpt.get();
+    
+            // Hacher le nouveau mot de passe
+            String hashedPassword = passwordEncoder.encode(newPassWord);
+            personnel.setPass(hashedPassword);
+            personnel.setDateModification(LocalDate.now());
+    
+            return pRepository.save(personnel);
+        } else {
+            throw new Exception("Personnel non trouvé avec l'ID : " + id);
+        }
+    }
+
+    public Personnel desactiver(Long id ){
+        Personnel per = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun personnel trouvé") );
+
+        per.setStatut(0);
+        return  pRepository.save(per);
+    }
+
+     public Personnel connexion(String email, String pass){
+        Personnel p = pRepository.findByEmail(email);
+        if (p == null || !passwordEncoder.matches(pass, p.getPass())) {
+            throw new EntityNotFoundException("Email ou mot de passe incorrect");
+        }
+        
+        if(p.getStatut()== 0){
+            throw new NoContentException("Connexion échoué votre compte  est desactivé \n veuillez contacter l'administrateur pour la procedure d'activation de votre compte !");
+        }
+        return p;
+        }
 }

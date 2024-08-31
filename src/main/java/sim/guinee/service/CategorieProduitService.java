@@ -22,7 +22,7 @@ public class CategorieProduitService {
         return fRepository.save(f);
     }
 
-    public CategorieProduit update(CategorieProduit f, int id){
+    public CategorieProduit update(CategorieProduit f, Long id){
         CategorieProduit fo = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("CategorieProduit non trouvé") );
         
         fo.setNomCategorieProduit(f.getNomCategorieProduit());    
@@ -32,7 +32,7 @@ public class CategorieProduitService {
         return fRepository.save(fo);
     }
 
-    public CategorieProduit getById(int id) {
+    public CategorieProduit getById(Long id) {
         return fRepository.findById(id).orElseThrow(() -> new IllegalStateException("CategorieProduit non trouvé") );
     }
 
@@ -45,8 +45,8 @@ public class CategorieProduitService {
 
         return fList;
     }
-    public List<CategorieProduit> getAllByFamilleProduit(String nom) {
-        List<CategorieProduit> fList = fRepository.findByFamilleProduit(nom);
+    public List<CategorieProduit> getAllByFamilleProduit(String familleProduit) {
+        List<CategorieProduit> fList = fRepository.findByFamilleProduit(familleProduit);
 
         if(fList.isEmpty()){
             throw new IllegalStateException("Aucun CategorieProduit trouvé");
@@ -55,7 +55,7 @@ public class CategorieProduitService {
         return fList;
     }
 
-    public String deleteCategorieProduit(int id ){
+    public String deleteCategorieProduit(Long id ){
         CategorieProduit f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("CategorieProduit non trouvé") );
         fRepository.delete(f);
         return "Supprimé avec succèss";

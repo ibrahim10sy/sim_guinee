@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Departement;
 
 @Repository
-public interface DepartementRepository extends JpaRepository<Departement, Integer> {
+public interface DepartementRepository extends JpaRepository<Departement, Long > {
 
     Departement findByNomDepartement(String nomDepartement);
 

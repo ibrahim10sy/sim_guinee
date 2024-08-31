@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Region;
 
 @Repository
-public interface RegionRepository extends JpaRepository<Region, Integer> {
+public interface RegionRepository extends JpaRepository<Region, Long > {
 
 	Region findByNomRegion(String nomRegion);
 
-    List<Region> findByRegionNaturelle(int id);
+    List<Region> findByRegionNaturelle(Long id);
     
 }

@@ -11,7 +11,7 @@ public class Magasin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idMagasin;
+    private Long idMagasin;
 
     @Column(nullable = false)
     private String codeMagasin;

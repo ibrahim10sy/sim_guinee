@@ -11,10 +11,10 @@ public class NiveauApprovisionement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idNiveauApprovisionnement;
+    private Long idNiveauApprovisionement;
 
     @Column( length = 100, nullable = false)
-    private String niveauApprovisionnement;
+    private String niveauApprovisionement;
 
     @Column( nullable = false)
     private LocalDate dateEnregistrement;
@@ -22,9 +22,9 @@ public class NiveauApprovisionement {
     @Column( nullable = false, columnDefinition = "TEXT")
     private String idPersonnel;
 
-    @Column( nullable = false)
+    @Column( nullable = true)
     private LocalDate modifierLe;
 
-    @Column( columnDefinition = "TEXT", nullable = false)
+    @Column( columnDefinition = "TEXT", nullable = true)
     private String modifierPar;
 }

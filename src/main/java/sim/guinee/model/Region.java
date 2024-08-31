@@ -13,7 +13,7 @@ public class Region {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRegion;
+    private Long idRegion;
 
     @Column(length = 30, nullable = false)
     private String codeRegion;
@@ -25,7 +25,7 @@ public class Region {
     private String abregeRegion;
 
     @Column( nullable = true)
-    private int regionNaturelle;
+    private Long regionNaturelle;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String couleur;

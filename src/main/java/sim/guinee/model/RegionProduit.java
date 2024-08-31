@@ -15,7 +15,7 @@ public class RegionProduit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRegionProduit;
+    private Long idRegionProduit;
 
     @Column(length = 30 , nullable = true)
     private String codeRegionProduit;

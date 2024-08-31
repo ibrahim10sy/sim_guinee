@@ -25,13 +25,13 @@ public class ParametrageController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<Parametrage> updateParametrage(@PathVariable int id, @RequestBody Parametrage a ){
+    public ResponseEntity<Parametrage> updateParametrage(@PathVariable Long id, @RequestBody Parametrage a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'un Parametrage à travers id")
-    public ResponseEntity<Parametrage> getById(@PathVariable int id) {
+    public ResponseEntity<Parametrage> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
@@ -43,7 +43,7 @@ public class ParametrageController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'un Parametrage en  fonction de l'id ")
-    public String deleteParametrage(@PathVariable int id) {
+    public String deleteParametrage(@PathVariable Long id) {
         return aService.deleteParam(id);
     }
 }

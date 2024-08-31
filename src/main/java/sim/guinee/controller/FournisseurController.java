@@ -26,13 +26,13 @@ public class FournisseurController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<Fournisseur> updateFournisseur(@PathVariable int id, @RequestBody Fournisseur a ){
+    public ResponseEntity<Fournisseur> updateFournisseur(@PathVariable Long id, @RequestBody Fournisseur a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'un Fournisseur à travers id")
-    public ResponseEntity<Fournisseur> getById(@PathVariable int id) {
+    public ResponseEntity<Fournisseur> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
@@ -44,7 +44,7 @@ public class FournisseurController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'un Fournisseur en  fonction de l'id ")
-    public String deleteFournisseur(@PathVariable int id) {
+    public String deleteFournisseur(@PathVariable Long id) {
         return aService.deleteFournisseur(id);
     }
 

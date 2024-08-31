@@ -7,5 +7,5 @@ import sim.guinee.model.EnvoiMsg;
 
 @Repository
 
-public interface EnvoiMsgRepository extends JpaRepository<EnvoiMsg,Integer>{
+public interface EnvoiMsgRepository extends JpaRepository<EnvoiMsg,Long >{
 }

@@ -21,7 +21,7 @@ public class EnqueteGrossisteService {
         return fRepository.save(f);
     }
 
-    public EnqueteGrossiste update(EnqueteGrossiste f, int id){
+    public EnqueteGrossiste update(EnqueteGrossiste f, Long id){
         EnqueteGrossiste fo = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("EnqueteGrossiste non trouvé") );
         
         fo.setNumFiche(f.getNumFiche());
@@ -35,7 +35,7 @@ public class EnqueteGrossisteService {
         return fRepository.save(fo);
     }
 
-    public EnqueteGrossiste getById(int id) {
+    public EnqueteGrossiste getById(Long id) {
         return fRepository.findById(id).orElseThrow(() -> new IllegalStateException("EnqueteGrossiste non trouvé") );
     }
 
@@ -49,7 +49,7 @@ public class EnqueteGrossisteService {
         return fList;
     }
 
-    public String deleteEnqueteGrossiste(int id ){
+    public String deleteEnqueteGrossiste(Long id ){
         EnqueteGrossiste f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("EnqueteGrossiste non trouvé") );
         fRepository.delete(f);
         return "Supprimé avec succèss";

@@ -22,7 +22,7 @@ public class PrixMarcheGrossisteService {
         return pRepository.save(p);
     }
 
-    public PrixMarcheGrossiste update(PrixMarcheGrossiste p , int id){
+    public PrixMarcheGrossiste update(PrixMarcheGrossiste p , Long id){
         PrixMarcheGrossiste pr = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix grossiste trouvé") );
 
         pr.setEnquete(p.getEnquete());
@@ -65,8 +65,8 @@ public class PrixMarcheGrossisteService {
         return pList;
     }
 
-    public List<PrixMarcheGrossiste> getAllByProduit(String nom){
-        List<PrixMarcheGrossiste> pList = pRepository.findByProduit(nom);
+    public List<PrixMarcheGrossiste> getAllByProduit(String produit){
+        List<PrixMarcheGrossiste> pList = pRepository.findByProduit(produit);
         if(pList.isEmpty()){
             throw new IllegalStateException("Aucun prix grossiste trouvé");
         }
@@ -123,7 +123,7 @@ public class PrixMarcheGrossisteService {
     }
 
 
-    public String deletePrix(int id){
+    public String deletePrix(Long id){
         PrixMarcheGrossiste p = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix grossiste non trouvé") );
         pRepository.delete(p);
         return "Prix grossiste supprimé avec succès";

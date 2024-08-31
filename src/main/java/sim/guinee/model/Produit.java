@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "produit")
@@ -13,7 +16,7 @@ public class Produit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idProduit;
+    private Long idProduit;
 
     @Column(columnDefinition = "TEXT",nullable=true)
     private String codeProduit;
@@ -22,7 +25,7 @@ public class Produit {
     private String nomProduit;
 
     @Column(nullable = false)
-    private int familleProduit;
+    private Long familleProduit;
 
     @Column(nullable = false)
     private LocalDate dateEnregistrement;
@@ -31,7 +34,7 @@ public class Produit {
     private String idPersonnel;
 
     @Column(columnDefinition = "TEXT", nullable = true)
-    private int idMagasin;
+    private Long idMagasin;
 
     @Column(columnDefinition = "TEXT",nullable=true)
     private String etat;
@@ -42,4 +45,8 @@ public class Produit {
     @Column(columnDefinition = "TEXT",nullable=true)
     private String modifierPar;
  
+    @ElementCollection
+    @CollectionTable(name = "images_produit", joinColumns = @JoinColumn(name = "id_produit"))
+    @Column(name = "image_path")
+    private List<String> images = new ArrayList<>();
 }

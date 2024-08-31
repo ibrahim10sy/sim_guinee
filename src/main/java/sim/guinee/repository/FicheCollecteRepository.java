@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.FicheCollecte;
 
 @Repository
-public interface FicheCollecteRepository  extends JpaRepository<FicheCollecte,Integer>{
+public interface FicheCollecteRepository  extends JpaRepository<FicheCollecte,Long >{
 
-    List<FicheCollecte> findByEnquete(int id);
+    List<FicheCollecte> findByEnquete(Long id);
 }

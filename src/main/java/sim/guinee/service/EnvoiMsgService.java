@@ -18,7 +18,7 @@ public class EnvoiMsgService {
         return eRepository.save(e);
     } 
 
-    public EnvoiMsg update(EnvoiMsg e, int id){
+    public EnvoiMsg update(EnvoiMsg e, Long id){
         EnvoiMsg en = eRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune envoi trouvé") );
         en.setRegion(e.getRegion());
         en.setCollecteur(e.getCollecteur());
@@ -28,10 +28,10 @@ public class EnvoiMsgService {
         en.setCa(e.getCa());
         en.setUropc(e.getUropc());
         en.setMsg(e.getMsg());
-        return eRepository.save(e);
+        return eRepository.save(en);
     }
 
-    public EnvoiMsg getById(int id){
+    public EnvoiMsg getById(Long id){
         return eRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune envoi trouvé") );
     }
 
@@ -43,7 +43,7 @@ public class EnvoiMsgService {
         return m;
     }
 
-    public String delete(int id){
+    public String delete(Long id){
         EnvoiMsg e = eRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune envoi trouvé") );
         eRepository.delete(e);
         return "Supprimé avec succès";

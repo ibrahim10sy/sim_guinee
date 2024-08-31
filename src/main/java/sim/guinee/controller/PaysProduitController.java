@@ -25,20 +25,20 @@ public class PaysProduitController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<PaysProduit> updatePaysProduit(@PathVariable int id, @RequestBody PaysProduit a ){
+    public ResponseEntity<PaysProduit> updatePaysProduit(@PathVariable Long id, @RequestBody PaysProduit a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'un PaysProduit à travers id")
-    public ResponseEntity<PaysProduit> getById(@PathVariable int id) {
+    public ResponseEntity<PaysProduit> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/getAllByRegion/{nomRegion}")
+    @GetMapping("/getAllByRegion/{regionProduit}")
     @Operation(summary="Récuperation de tout les Pays Produits par region ")
-    public ResponseEntity<List<PaysProduit>> getAllPaysProduitByRegion(@PathVariable String nom) {
-        return new ResponseEntity<>(aService.getByRegion(nom), HttpStatus.OK);
+    public ResponseEntity<List<PaysProduit>> getAllPaysProduitByRegion(@PathVariable String regionProduit) {
+        return new ResponseEntity<>(aService.getByRegion(regionProduit), HttpStatus.OK);
     }
    
     @GetMapping("/getAllPaysProduit")
@@ -49,7 +49,7 @@ public class PaysProduitController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'un Pays Produit en  fonction de l'id ")
-    public String deletePaysProduit(@PathVariable int id) {
+    public String deletePaysProduit(@PathVariable Long id) {
         return aService.delete(id);
     }
 }

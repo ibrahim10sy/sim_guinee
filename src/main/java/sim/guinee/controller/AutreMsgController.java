@@ -25,13 +25,13 @@ public class AutreMsgController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<AutreMsg> updateMsg(@PathVariable int id, @RequestBody AutreMsg a ){
+    public ResponseEntity<AutreMsg> updateMsg(@PathVariable Long id, @RequestBody AutreMsg a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'un msg")
-    public ResponseEntity<AutreMsg> getById(@PathVariable int id) {
+    public ResponseEntity<AutreMsg> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
@@ -43,7 +43,7 @@ public class AutreMsgController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'un Msg en  fonction de l'id ")
-    public String deleteMsg(@PathVariable int id) {
+    public String deleteMsg(@PathVariable Long id) {
         return aService.deleteAutreMsg(id);
     }
 }

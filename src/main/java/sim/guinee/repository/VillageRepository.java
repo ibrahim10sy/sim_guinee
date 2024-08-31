@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Village;
 
 @Repository
-public interface VillageRepository extends JpaRepository<Village, Integer> {
+public interface VillageRepository extends JpaRepository<Village, Long > {
 
     Village findByNomVillage(String nomVillage);
 
-    List<Village> findByCommune(String nom);
+    List<Village> findByCommune(Long id );
     
 }

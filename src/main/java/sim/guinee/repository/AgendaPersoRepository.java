@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.AgendaPerso;
 
 @Repository
-public interface AgendaPersoRepository  extends JpaRepository<AgendaPerso,Integer>{
+public interface AgendaPersoRepository  extends JpaRepository<AgendaPerso,Long>{
 
     List<AgendaPerso> findByIdPersonnel(String id);
 

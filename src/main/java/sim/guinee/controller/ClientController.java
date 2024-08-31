@@ -26,13 +26,13 @@ public class ClientController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<Client> updateClient(@PathVariable int id, @RequestBody Client a ){
+    public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody Client a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'un client à travers id")
-    public ResponseEntity<Client> getById(@PathVariable int id) {
+    public ResponseEntity<Client> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
@@ -44,7 +44,7 @@ public class ClientController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'un client en  fonction de l'id ")
-    public String deleteClient(@PathVariable int id) {
+    public String deleteClient(@PathVariable Long id) {
         return aService.deleteClient(id);
     }
 

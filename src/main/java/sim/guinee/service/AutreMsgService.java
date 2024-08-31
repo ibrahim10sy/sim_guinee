@@ -2,11 +2,14 @@ package sim.guinee.service;
 
 import java.time.LocalDateTime;
 import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import sim.guinee.model.AutreMsg;
 import sim.guinee.repository.AutreMsgRepository;
 
+@Service
 public class AutreMsgService {
     
     @Autowired
@@ -17,14 +20,14 @@ public class AutreMsgService {
         return fRepository.save(f);
     }
 
-    public AutreMsg update(AutreMsg f, int id){
+    public AutreMsg update(AutreMsg f, Long id){
         AutreMsg fo = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("AutreMsg non trouvé") );
         fo.setExpediteur(f.getExpediteur());
         fo.setMsg(f.getMsg());
         return fRepository.save(fo);
     }
 
-    public AutreMsg getById(int id) {
+    public AutreMsg getById(Long id) {
         return fRepository.findById(id).orElseThrow(() -> new IllegalStateException("AutreMsg non trouvé") );
     }
 
@@ -38,7 +41,7 @@ public class AutreMsgService {
         return fList;
     }
 
-    public String deleteAutreMsg(int id ){
+    public String deleteAutreMsg(Long id ){
         AutreMsg f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("AutreMsg non trouvé") );
         fRepository.delete(f);
         return "Supprimé avec succèss";

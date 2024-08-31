@@ -13,7 +13,7 @@ public class InfoSolde {
    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(nullable=true)
     private LocalDate date;

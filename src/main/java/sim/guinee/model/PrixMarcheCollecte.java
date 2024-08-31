@@ -22,7 +22,7 @@ public class PrixMarcheCollecte {
     private String produit;
 
     @Column(nullable=false)
-    private int unite;
+    private Long unite;
 
     @Column(nullable=false)
     private double poidsUnitaire;

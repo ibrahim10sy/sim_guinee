@@ -18,7 +18,7 @@ public class ParametrageService {
         return pRepository.save(p);
     }
     
-    public Parametrage update(Parametrage p, int id){
+    public Parametrage update(Parametrage p, Long id){
         Parametrage param = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun paramètre trouvé") );
         param.setProjet(p.getProjet());
         param.setPays(p.getPays());
@@ -28,7 +28,7 @@ public class ParametrageService {
         return pRepository.save(param);
     }
 
-    public Parametrage getById(int id){
+    public Parametrage getById(Long id){
         return pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun paramètre trouvé") );
     }
 
@@ -41,7 +41,7 @@ public class ParametrageService {
         return pList;
     }
 
-    public String deleteParam(int id){
+    public String deleteParam(Long id){
         Parametrage p = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun paramètre trouvé") );
         pRepository.delete(p);
         return "Supprimé avec succéss";

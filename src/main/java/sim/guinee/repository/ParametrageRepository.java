@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Parametrage;
 
 @Repository
-public interface  ParametrageRepository extends JpaRepository<Parametrage, Integer>{
+public interface  ParametrageRepository extends JpaRepository<Parametrage, Long >{
     
 }

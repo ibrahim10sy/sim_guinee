@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Personnel;
 
 @Repository
-public interface PersonnelRepository extends JpaRepository<Personnel, Integer> {
+public interface PersonnelRepository extends JpaRepository<Personnel, Long > {
 
     Personnel findByContact(String contact);
 

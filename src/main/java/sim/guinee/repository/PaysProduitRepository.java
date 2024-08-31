@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.PaysProduit;
 
 @Repository
-public interface PaysProduitRepository  extends JpaRepository<PaysProduit, Integer>{
+public interface PaysProduitRepository  extends JpaRepository<PaysProduit, Long >{
 
-    List<PaysProduit> findByRegionProduit(String region);
+    List<PaysProduit> findByRegionProduit(String regionProduit);
     
 }

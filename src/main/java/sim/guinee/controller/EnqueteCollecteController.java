@@ -26,7 +26,7 @@ public class EnqueteCollecteController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<EnqueteCollecte> updateEnqueteCollecte(@PathVariable int id, @RequestBody EnqueteCollecte a ){
+    public ResponseEntity<EnqueteCollecte> updateEnqueteCollecte(@PathVariable Long id, @RequestBody EnqueteCollecte a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
@@ -38,12 +38,12 @@ public class EnqueteCollecteController {
 
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'une enquete collecte  à travers id")
-    public ResponseEntity<EnqueteCollecte> getById(@PathVariable int id) {
+    public ResponseEntity<EnqueteCollecte> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé une Enquete Collecte  en  fonction de l'id ")
-    public String deleteEnqueteCollecte(@PathVariable int id) {
+    public String deleteEnqueteCollecte(@PathVariable Long id) {
         return aService.deleteEnqueteCollecte(id);
     }
 }

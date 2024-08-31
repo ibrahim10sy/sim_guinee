@@ -12,10 +12,10 @@ public class Prefecture {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idPrefecture;
+    private Long  idPrefecture;
 
     @Column( nullable = false)
-    private int region;
+    private Long region;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String nomPrefecture;

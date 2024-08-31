@@ -25,25 +25,25 @@ public class FormeProduitController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<FormeProduit> updateFormeProduit(@PathVariable int id, @RequestBody FormeProduit a ){
+    public ResponseEntity<FormeProduit> updateFormeProduit(@PathVariable Long id, @RequestBody FormeProduit a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'une Forme Produit")
-    public ResponseEntity<FormeProduit> getById(@PathVariable int id) {
+    public ResponseEntity<FormeProduit> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
     @GetMapping("/getAll")
-    @Operation(summary="Récuperation de tout les FormeProduits ")
+    @Operation(summary="Récuperation de tout les Forme Produits ")
     public ResponseEntity<List<FormeProduit>> getAllFormeProduit() {
         return new ResponseEntity<>(aService.getAll(), HttpStatus.OK);
     }
  
     @DeleteMapping("/delete/{id}")
-    @Operation(summary="Supprimé d'une famille de produit  l'id ")
-    public String deleteFiche(@PathVariable int id) {
+    @Operation(summary="Supprimé d'une forme  de produit  l'id ")
+    public String deleteFiche(@PathVariable Long id) {
         return aService.deleteFormeProduit(id);
     }
 }

@@ -24,13 +24,13 @@ public class EnqueteurController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<Enqueteur> updateEnqueteur(@PathVariable int id, @RequestBody Enqueteur a ){
+    public ResponseEntity<Enqueteur> updateEnqueteur(@PathVariable Long id, @RequestBody Enqueteur a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'un Enqueteur à travers id")
-    public ResponseEntity<Enqueteur> getById(@PathVariable int id) {
+    public ResponseEntity<Enqueteur> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
@@ -42,7 +42,7 @@ public class EnqueteurController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'un Enqueteur en  fonction de l'id ")
-    public String deleteEnqueteur(@PathVariable int id) {
+    public String deleteEnqueteur(@PathVariable Long id) {
         return aService.deleteEnqueteur(id);
     }
 }

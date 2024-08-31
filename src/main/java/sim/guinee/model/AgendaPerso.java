@@ -14,7 +14,7 @@ public class AgendaPerso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAgenda;
+    private Long idAgenda;
 
     @Column(columnDefinition = "TEXT" ,nullable = true)
     private String expediteur;

@@ -14,7 +14,10 @@ public class Fournisseur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idFournisseur;
+    private Long idFournisseur;
+
+    @Column(length = 100, nullable = false)
+    private String code;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String nomFournisseur;

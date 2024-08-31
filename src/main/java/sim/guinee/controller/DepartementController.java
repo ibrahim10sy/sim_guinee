@@ -26,7 +26,7 @@ public class DepartementController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<Departement> updateDepartement(@PathVariable int id, @RequestBody Departement a ){
+    public ResponseEntity<Departement> updateDepartement(@PathVariable Long id, @RequestBody Departement a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
@@ -44,7 +44,7 @@ public class DepartementController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'une Departement  en  fonction de l'id ")
-    public String deleteDepartement(@PathVariable int id) {
+    public String deleteDepartement(@PathVariable Long id) {
         return aService.deleteDepartement(id);
     }
 }

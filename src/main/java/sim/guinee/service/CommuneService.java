@@ -32,7 +32,7 @@ public class CommuneService {
     }
 
 
-    public Commune update(Commune v, int id) {
+    public Commune update(Commune v, Long id) {
         Commune vi = vRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun Commune  trouvé") );
 
         vi.setDepartement(v.getDepartement());
@@ -65,7 +65,7 @@ public class CommuneService {
         return v;
     }
 
-    public String deleteCommune(int idCommune){
+    public String deleteCommune(Long idCommune){
        Commune v  = vRepository.findById(idCommune).orElseThrow(() -> new IllegalStateException("Commune non trouvé") );
         vRepository.delete(v);
         return "Commune  supprimée avec succès";

@@ -13,7 +13,7 @@ public class UniteMesure {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUnite;
+    private Long idUnite;
 
     @Column(length = 100, nullable = false)
     private String nomUnite;

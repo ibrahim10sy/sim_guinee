@@ -24,7 +24,7 @@ public class UserAccessService {
         return userRepository.save(user);
     }
     
-    public UserAccess update(UserAccess user , int id ){
+    public UserAccess update(UserAccess user , Long id ){
         UserAccess u = userRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun access  trouvé") );
 
         u.setPageEdit(user.getPageEdit());
@@ -46,7 +46,16 @@ public class UserAccessService {
         return accessList;
     }
 
-    public String deleteAccess(int id){
+    public List<UserAccess> getAllByPersonnel(Long id){
+        List<UserAccess> accessList = userRepository.findByPersonnel(id);
+
+        if(accessList.isEmpty()){
+            throw new IllegalStateException("Liste access user vide ");
+        }
+        return accessList;
+    }
+
+    public String deleteAccess(Long id){
        UserAccess u = userRepository.findById(id).orElseThrow(() -> new IllegalStateException("Access non trouvé") );
         userRepository.delete(u);
         return "User access supprimée avec succès";

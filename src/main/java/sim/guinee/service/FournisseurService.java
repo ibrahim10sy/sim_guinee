@@ -13,14 +13,17 @@ public class FournisseurService {
  
     @Autowired
     FournisseurRepository fRepository;
+    @Autowired
+    CodeGenerator codeGenerator;
 
     public Fournisseur create(Fournisseur f){
         f.setDateEnregistrement(LocalDate.now());
-
+        String code = codeGenerator.genererCode();
+        f.setCode(code);
         return fRepository.save(f);
     }
 
-    public Fournisseur update(Fournisseur f, int id){
+    public Fournisseur update(Fournisseur f, Long id){
         Fournisseur fo = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Fournisseur non trouvé") );
         
         fo.setNomFournisseur(f.getNomFournisseur());
@@ -34,7 +37,7 @@ public class FournisseurService {
         return fRepository.save(fo);
     }
 
-    public Fournisseur getById(int id) {
+    public Fournisseur getById(Long id) {
         return fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Fournisseur non trouvé") );
     }
 
@@ -48,7 +51,7 @@ public class FournisseurService {
         return fList;
     }
 
-    public String deleteFournisseur(int id ){
+    public String deleteFournisseur(Long id ){
         Fournisseur f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Fournisseur non trouvé") );
         fRepository.delete(f);
         return "Supprimé avec succèss";

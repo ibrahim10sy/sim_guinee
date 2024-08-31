@@ -1,7 +1,13 @@
 package sim.guinee.model;
 
 import java.time.LocalDate;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
@@ -11,7 +17,7 @@ public class FamilleProduit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idFamilleProduit;
+    private Long idFamilleProduit;
 
     @Column(nullable = false, length = 30)
     private String codeFamilleProduit;

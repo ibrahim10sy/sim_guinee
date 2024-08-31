@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Grossiste;
 
 @Repository
-public interface GrossisteRepository extends JpaRepository<Grossiste,Integer>{
+public interface GrossisteRepository extends JpaRepository<Grossiste,Long >{
 }

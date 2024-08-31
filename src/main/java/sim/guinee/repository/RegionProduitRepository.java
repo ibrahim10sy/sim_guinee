@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.RegionProduit;
 
 @Repository
-public interface RegionProduitRepository extends JpaRepository<RegionProduit, Integer> {
+public interface RegionProduitRepository extends JpaRepository<RegionProduit, Long > {
 
     RegionProduit findByNomRegionProduit(String nomRegionProduit);
     

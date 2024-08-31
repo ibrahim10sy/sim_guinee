@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Magasin;
 
 @Repository
-public interface MagasinRepository extends JpaRepository<Magasin ,Integer>{
+public interface MagasinRepository extends JpaRepository<Magasin ,Long >{
 
     List<Magasin> findByLocaliteMagasin(String localite);
 
-    List<Magasin> findByNomMarche(String nom);
+    List<Magasin> findByNomMarche(String nomMarche);
 
   
 

@@ -15,7 +15,7 @@ public class Enqueteur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEnqueteur;
+    private Long idEnqueteur;
 
     @Column(length = 30, nullable = false)
     private String code;
@@ -39,7 +39,7 @@ public class Enqueteur {
     private String adresse;
 
     @Column(nullable = false)
-    private int superviseur;
+    private Long superviseur;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String description;

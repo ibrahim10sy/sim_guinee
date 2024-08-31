@@ -23,7 +23,7 @@ public class MarcheService {
         return mRepository.save(m);
     }
 
-    public Marche update(Marche m, int id){
+    public Marche update(Marche m, Long id){
         Marche ma = mRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun marché trouvé") );
         
         ma.setNomMarche(m.getNomMarche());
@@ -41,7 +41,7 @@ public class MarcheService {
         return mRepository.save(ma);
     }
 
-    public Marche getById(int id){
+    public Marche getById(Long id){
         return mRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun marché trouvé") );
     }
 
@@ -90,7 +90,7 @@ public class MarcheService {
         return m;
     }
 
-    public String deleteMarche(int id){
+    public String deleteMarche(Long id){
         Marche m = mRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun marché trouvé") );
 
         mRepository.delete(m);

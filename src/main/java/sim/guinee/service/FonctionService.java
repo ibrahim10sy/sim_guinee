@@ -23,7 +23,7 @@ public class FonctionService {
         return fRepository.save(f);
     }
 
-    public Fonction update(Fonction f, int id){
+    public Fonction update(Fonction f, Long id){
         Fonction fo = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune fonction trouvé") );
         fo.setFonction(f.getFonction());
         fo.setDescription(f.getFonction());
@@ -40,13 +40,13 @@ public class FonctionService {
         return fList;
     }
     
-    public String deleteFonction(Integer id){
+    public String deleteFonction(Long  id){
         Fonction f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune fonction trouvé") );
         fRepository.delete(f);
         return "Supprimée avec succès";
     }
 
-    public Fonction getById(int id){
+    public Fonction getById(Long id){
         return fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune fonction trouvé") );
     }
 

@@ -23,7 +23,7 @@ public class PaysProduitService {
         return pRepository.save(p);
     }
 
-    public PaysProduit update(PaysProduit p, int id){
+    public PaysProduit update(PaysProduit p, Long id){
         PaysProduit pays = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun pays trouvé") );
         pays.setNomPaysProduit(p.getNomPaysProduit());
         pays.setRegionProduit(p.getRegionProduit());
@@ -39,8 +39,8 @@ public class PaysProduitService {
 
         return pList;
     }
-    public List<PaysProduit> getByRegion(String region){
-        List<PaysProduit> pList = pRepository.findByRegionProduit(region);
+    public List<PaysProduit> getByRegion(String regionProduit){
+        List<PaysProduit> pList = pRepository.findByRegionProduit(regionProduit);
         
         if(pList.isEmpty()){
             throw new IllegalStateException("Aucun pays trouvé");
@@ -49,11 +49,11 @@ public class PaysProduitService {
         return pList;
     }
 
-    public PaysProduit getById(int id){
+    public PaysProduit getById(Long id){
         return pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun pays trouvé") );
     }
 
-    public String delete(int id){
+    public String delete(Long id){
         PaysProduit pays = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun pays trouvé") );
         pRepository.delete(pays);
         return "Supprimé avec succèss";

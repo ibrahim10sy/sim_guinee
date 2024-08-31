@@ -25,13 +25,13 @@ public class NiveauController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<NiveauApprovisionement> updateNiveauApprovisionement(@PathVariable int id, @RequestBody NiveauApprovisionement a ){
+    public ResponseEntity<NiveauApprovisionement> updateNiveauApprovisionement(@PathVariable Long id, @RequestBody NiveauApprovisionement a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'un NiveauApprovisionement à travers id")
-    public ResponseEntity<NiveauApprovisionement> getById(@PathVariable int id) {
+    public ResponseEntity<NiveauApprovisionement> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
@@ -43,7 +43,7 @@ public class NiveauController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'un NiveauApprovisionement en  fonction de l'id ")
-    public String deleteNiveauApprovisionement(@PathVariable int id) {
+    public String deleteNiveauApprovisionement(@PathVariable Long id) {
         return aService.deleteNiveau(id);
     }
 }

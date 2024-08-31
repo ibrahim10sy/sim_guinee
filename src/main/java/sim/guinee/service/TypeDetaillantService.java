@@ -1,8 +1,8 @@
 package sim.guinee.service;
 
 import java.time.LocalDate;
-
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class TypeDetaillantService {
         return tRepository.save(type);
     }
 
-    public TypeDetaillant update(TypeDetaillant t , int id){
+    public TypeDetaillant update(TypeDetaillant t , Long id){
         TypeDetaillant type = tRepository.findById(id).orElseThrow(() -> new IllegalStateException("Type detaillant  non trouvé") );
 
         type.setTypeDetaillant(t.getTypeDetaillant());
@@ -40,9 +40,9 @@ public class TypeDetaillantService {
         return typeList;
     }
 
-    public String deleteType(int id){
+    public String deleteType(Long id){
        TypeDetaillant v  = tRepository.findById(id).orElseThrow(() -> new IllegalStateException("Type detaillant  non trouvé") );
         tRepository.delete(v);
-        return "Village  supprimée avec succès";
+        return "Type  supprimée avec succès";
     }
 }

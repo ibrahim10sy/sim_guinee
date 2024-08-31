@@ -23,7 +23,7 @@ public class EnqueteurService {
         return fRepository.save(f);
     }
 
-    public Enqueteur update(Enqueteur f, int id){
+    public Enqueteur update(Enqueteur f, Long id){
         Enqueteur fo = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Enqueteur non trouvé") );
         
         fo.setNom(f.getNom());
@@ -42,7 +42,7 @@ public class EnqueteurService {
         return fRepository.save(fo);
     }
 
-    public Enqueteur getById(int id) {
+    public Enqueteur getById(Long id) {
         return fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Enqueteur non trouvé") );
     }
 
@@ -56,7 +56,7 @@ public class EnqueteurService {
         return fList;
     }
 
-    public String deleteEnqueteur(int id ){
+    public String deleteEnqueteur(Long id ){
         Enqueteur f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Enqueteur non trouvé") );
         fRepository.delete(f);
         return "Supprimé avec succèss";

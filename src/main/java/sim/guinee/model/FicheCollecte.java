@@ -11,10 +11,10 @@ public class FicheCollecte {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idFiche;
+    private Long idFiche;
 
     @Column(nullable = false )
-    private int enquete;
+    private Long enquete;
 
     @Column(length = 30, nullable = true)
     private String statut;

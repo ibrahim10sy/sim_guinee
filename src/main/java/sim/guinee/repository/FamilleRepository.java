@@ -7,5 +7,5 @@ import sim.guinee.model.FamilleProduit;
 
 @Repository
 
-public interface FamilleRepository extends JpaRepository<FamilleProduit,Integer>{
+public interface FamilleRepository extends JpaRepository<FamilleProduit,Long >{
 }

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.Fournisseur;
 
 @Repository
-public interface FournisseurRepository  extends JpaRepository<Fournisseur,Integer>{
+public interface FournisseurRepository  extends JpaRepository<Fournisseur,Long >{
 } 

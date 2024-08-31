@@ -22,7 +22,7 @@ public class EnqueteConsommationService {
         return fRepository.save(f);
     }
 
-    public EnqueteConsommation update(EnqueteConsommation f, int id){
+    public EnqueteConsommation update(EnqueteConsommation f, Long id){
         EnqueteConsommation fo = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("EnqueteConsommation non trouvé") );
         
         fo.setNumFiche(f.getNumFiche());
@@ -36,7 +36,7 @@ public class EnqueteConsommationService {
         return fRepository.save(fo);
     }
 
-    public EnqueteConsommation getById(int id) {
+    public EnqueteConsommation getById(Long id) {
         return fRepository.findById(id).orElseThrow(() -> new IllegalStateException("EnqueteConsommation non trouvé") );
     }
 
@@ -50,7 +50,7 @@ public class EnqueteConsommationService {
         return fList;
     }
 
-    public String deleteEnqueteConsommation(int id ){
+    public String deleteEnqueteConsommation(Long id ){
         EnqueteConsommation f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("EnqueteConsommation non trouvé") );
         fRepository.delete(f);
         return "Supprimé avec succèss";

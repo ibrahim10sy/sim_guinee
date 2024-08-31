@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.EnqueteGrossiste;
 
 @Repository
-public interface EnqueteGrossisteRepository extends JpaRepository<EnqueteGrossiste,Integer>{
+public interface EnqueteGrossisteRepository extends JpaRepository<EnqueteGrossiste,Long>{
 }

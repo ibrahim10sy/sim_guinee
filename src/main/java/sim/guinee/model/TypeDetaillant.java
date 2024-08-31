@@ -13,7 +13,7 @@ public class TypeDetaillant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idTypeDetaillant;
+    private Long idTypeDetaillant;
 
     @Column(length = 100, nullable = false)
     private String typeDetaillant;

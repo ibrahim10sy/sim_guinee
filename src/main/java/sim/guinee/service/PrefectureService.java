@@ -26,7 +26,7 @@ public class PrefectureService {
         return sRepository.save(s);
     }
 
-    public Prefecture update(Prefecture s, int id){
+    public Prefecture update(Prefecture s, Long id){
         Prefecture sous = sRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune sous prefecture trouvé") );
 
         sous.setRegion(s.getRegion());
@@ -48,7 +48,7 @@ public class PrefectureService {
 
         return sousList;
     }
-    public List<Prefecture> getAllByRegion(int region){
+    public List<Prefecture> getAllByRegion(Long region){
         List<Prefecture> sousList = sRepository.findByRegion(region);
         
         if(sousList.isEmpty()){
@@ -58,15 +58,15 @@ public class PrefectureService {
         return sousList;
     }
 
-    public Prefecture getById(int id){
+    public Prefecture getById(Long id){
         return sRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune sous prefecture trouvé") );
     }
     
-    public String deletePrefecture(int id){
-        Prefecture s = sRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune sous prefecture non trouvé") );
+    public String deletePrefecture(Long id){
+        Prefecture s = sRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune prefecture non trouvé") );
 
         sRepository.delete(s);
-        return "Aucune sous prefecture trouvé";
+        return "Prefecture supprimé avec succèss";
     }
 
 }

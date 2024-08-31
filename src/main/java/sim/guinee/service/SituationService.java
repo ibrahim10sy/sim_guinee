@@ -8,19 +8,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import sim.guinee.model.Situation;
+import sim.guinee.model.SousPrefecture;
 import sim.guinee.repository.SituationRepository;
 
 @Service
 public class SituationService {
     
     @Autowired
-    SituationRepository sRepository; 
+  SituationRepository sRepository; 
     
     public Situation create(Situation s){
         return sRepository.save(s);  
     }
 
-    public Situation update(Situation s, int id){
+    public Situation update(Situation s, Long id){
         Situation si = sRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune situation  trouvé") );
 
         si.setIdid(s.getIdid());
@@ -50,7 +51,13 @@ public class SituationService {
         return sList;
     }
 
-    public String deleteSituation(int id){
+    public Situation getById(Long id){
+        Situation sous = sRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune sous prefecture trouvé") );
+        return sous;
+
+    }
+
+    public String deleteSituation(Long id){
         Situation s = sRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune situation non trouvé") );
         
         sRepository.save(s);

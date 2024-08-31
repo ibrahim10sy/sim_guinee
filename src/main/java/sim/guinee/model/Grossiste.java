@@ -13,7 +13,7 @@ public class Grossiste {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idGrossiste;
+    private Long idGrossiste;
 
     @Column(length = 100, nullable = false)
     private String code;

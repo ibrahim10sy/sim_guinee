@@ -24,7 +24,7 @@ public class FormeProduitService {
         return fRepository.save(p);
     }
 
-    public FormeProduit update(FormeProduit f,int id){
+    public FormeProduit update(FormeProduit f,Long id){
         FormeProduit fo = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun forme produit non trouvé") );
 
         fo.setNomFormeProduit(f.getNomFormeProduit());
@@ -45,11 +45,11 @@ public class FormeProduitService {
         return forme;
     }
 
-    public FormeProduit getById(int id){
+    public FormeProduit getById(Long id){
         return fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun forme trouvé"));
     }
 
-    public String deleteFormeProduit(int id){
+    public String deleteFormeProduit(Long id){
         FormeProduit f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune forme produit non trouvé") );
         fRepository.delete(f);
         return "Supprimé avec succèss";

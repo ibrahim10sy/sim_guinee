@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.RucheSync;
 
 @Repository
-public interface RucheSyncRepository extends JpaRepository<RucheSync, Integer> {
+public interface RucheSyncRepository extends JpaRepository<RucheSync, Long > {
     
 }

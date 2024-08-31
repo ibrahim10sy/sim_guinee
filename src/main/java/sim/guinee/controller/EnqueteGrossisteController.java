@@ -23,7 +23,7 @@ public class EnqueteGrossisteController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<EnqueteGrossiste> updateEnqueteGrossiste(@PathVariable int id, @RequestBody EnqueteGrossiste a ){
+    public ResponseEntity<EnqueteGrossiste> updateEnqueteGrossiste(@PathVariable Long id, @RequestBody EnqueteGrossiste a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
@@ -35,12 +35,12 @@ public class EnqueteGrossisteController {
 
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'une enquete grossiste  à travers id")
-    public ResponseEntity<EnqueteGrossiste> getById(@PathVariable int id) {
+    public ResponseEntity<EnqueteGrossiste> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé une Enquete grossiste  en  fonction de l'id ")
-    public String deleteEnqueteGrossiste(@PathVariable int id) {
+    public String deleteEnqueteGrossiste(@PathVariable Long id) {
         return aService.deleteEnqueteGrossiste(id);
     }
 }

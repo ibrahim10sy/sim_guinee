@@ -11,7 +11,7 @@ import lombok.Data;
 public class Marche {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idMarche;
+    private Long  idMarche;
 
     @Column(columnDefinition = "TEXT",nullable = false)
     private String nomMarche;

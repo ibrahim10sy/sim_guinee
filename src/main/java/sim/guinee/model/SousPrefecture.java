@@ -13,10 +13,10 @@ public class SousPrefecture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idSousPrefecture;
+    private Long idSousPrefecture;
 
     @Column(nullable = false)
-    private int prefecture;
+    private Long prefecture;
 
     @Column(columnDefinition = "TEXT",nullable = true)
     private String nomSousPrefecture;

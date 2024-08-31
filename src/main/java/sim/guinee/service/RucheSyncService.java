@@ -25,7 +25,7 @@ public class RucheSyncService {
         return rRepository.save(r);
     }
 
-    public RucheSync update(RucheSync r , int id){
+    public RucheSync update(RucheSync r , Long id){
         RucheSync ru = rRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune donné  trouvé") );
 
         ru.setType(r.getType());
@@ -44,7 +44,7 @@ public class RucheSyncService {
         return rList;
     }
 
-   public String deleteRuche(int id){
+   public String deleteRuche(Long id){
        RucheSync r   = rRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune donné trouvé") );
         rRepository.delete(r);
         return "Supprimée avec succès";

@@ -13,7 +13,10 @@ public class Personnel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int n;
+    private Long n;
+
+    @Column(length = 100, nullable = false)
+    private String code;
 
     @Column(length = 200, nullable = false)
     private String idPersonnel;

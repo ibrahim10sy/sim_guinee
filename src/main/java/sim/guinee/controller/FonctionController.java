@@ -25,13 +25,13 @@ public class FonctionController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<Fonction> updateFonction(@PathVariable int id, @RequestBody Fonction a ){
+    public ResponseEntity<Fonction> updateFonction(@PathVariable Long id, @RequestBody Fonction a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'une fonction")
-    public ResponseEntity<Fonction> getById(@PathVariable int id) {
+    public ResponseEntity<Fonction> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
@@ -43,7 +43,7 @@ public class FonctionController {
  
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'une famille de produit  l'id ")
-    public String deleteFiche(@PathVariable int id) {
+    public String deleteFiche(@PathVariable Long id) {
         return aService.deleteFonction(id);
     }
 

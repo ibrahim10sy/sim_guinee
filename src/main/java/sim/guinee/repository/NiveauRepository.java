@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import sim.guinee.model.NiveauApprovisionement;
 
 @Repository
-public interface NiveauRepository extends JpaRepository<NiveauApprovisionement,Integer>{
+public interface NiveauRepository extends JpaRepository<NiveauApprovisionement,Long >{
 
 }

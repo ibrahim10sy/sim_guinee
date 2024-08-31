@@ -6,7 +6,7 @@ import java.util.*;
 import sim.guinee.model.PrixMarcheGrossiste;
 
 @Repository
-public interface PrixMarcheGrossisteRepo  extends JpaRepository<PrixMarcheGrossiste, Integer>{
+public interface PrixMarcheGrossisteRepo  extends JpaRepository<PrixMarcheGrossiste, Long >{
     
     List<PrixMarcheGrossiste> findByProduit(String produit);
 

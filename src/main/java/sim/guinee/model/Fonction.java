@@ -11,7 +11,7 @@ public class Fonction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idFonction;
+    private Long idFonction;
 
     @Column(columnDefinition = "TEXT",nullable=true)
     private String fonction;

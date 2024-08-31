@@ -24,13 +24,13 @@ public class FamilleProduitController {
     
     @PutMapping("/update/{id}")
     @Operation(summary="Modification  à travers id")
-    public ResponseEntity<FamilleProduit> updateFamille(@PathVariable int id, @RequestBody FamilleProduit a ){
+    public ResponseEntity<FamilleProduit> updateFamille(@PathVariable Long id, @RequestBody FamilleProduit a ){
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
     @GetMapping("/getById/{id}")
     @Operation(summary="Récuperation d'une famille de produit")
-    public ResponseEntity<FamilleProduit> getById(@PathVariable int id) {
+    public ResponseEntity<FamilleProduit> getById(@PathVariable Long id) {
         return new ResponseEntity<>(aService.getById(id), HttpStatus.OK);
     }
 
@@ -42,7 +42,7 @@ public class FamilleProduitController {
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary="Supprimé d'une famille de produit  l'id ")
-    public String deleteMsg(@PathVariable int id) {
+    public String deleteMsg(@PathVariable Long id) {
         return aService.deleteFamilleProduit(id);
     }
 

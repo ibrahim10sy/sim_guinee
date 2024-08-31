@@ -13,7 +13,7 @@ public class Commune {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCommune;
+    private Long idCommune;
 
     @Column(length = 20, nullable = false)
     private String codeCommune;

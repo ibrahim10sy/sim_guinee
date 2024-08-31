@@ -11,13 +11,13 @@ import sim.guinee.repository.RegionNaturelleRepository;
 
 @Service
 public class RegionNaturelleService {
-    
+ 
     @Autowired
     RegionNaturelleRepository rRepository;
     @Autowired
     CodeGenerator codeGenerator;
 
-    public RegionNaturelle creer(RegionNaturelle r ){
+    public RegionNaturelle create(RegionNaturelle r ){
         RegionNaturelle re = rRepository.findByNomRegionNaturelle(r.getNomRegionNaturelle());
 
         if(re != null){
@@ -27,7 +27,7 @@ public class RegionNaturelleService {
         return rRepository.save(r);
     }
 
-    public RegionNaturelle update(RegionNaturelle r, int id){
+    public RegionNaturelle update(RegionNaturelle r, Long id){
         RegionNaturelle re = rRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune région trouvé") );
 
         re.setNomRegionNaturelle(r.getNomRegionNaturelle());
@@ -44,7 +44,7 @@ public class RegionNaturelleService {
         return rList;
     }
 
-    public String deleteRegionNaturelle(int id){
+    public String deleteRegionNaturelle(Long id){
         RegionNaturelle r = rRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucune région trouvé") );
         rRepository.delete(r);
         return "Supprimée avec succès";
