@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import sim.guinee.model.PrixMarcheGrossiste;
@@ -74,17 +75,8 @@ public class PrixMarcheGrossisteService {
         return pList;
     }
 
-    public List<PrixMarcheGrossiste> getAllByGrossiste(String nom){
-        List<PrixMarcheGrossiste> pList = pRepository.findByGrossiste(nom);
-        if(pList.isEmpty()){
-            throw new IllegalStateException("Aucun prix grossiste trouvé");
-        }
-
-        return pList;
-    }
-    public List<PrixMarcheGrossiste> getAllByLocaliteAchat(String nom){
-
-        List<PrixMarcheGrossiste> pList = pRepository.findByLocaliteAchat(nom);
+    public List<PrixMarcheGrossiste> getAllByGrossiste(String grossiste){
+        List<PrixMarcheGrossiste> pList = pRepository.findByGrossiste(grossiste);
         if(pList.isEmpty()){
             throw new IllegalStateException("Aucun prix grossiste trouvé");
         }
@@ -92,9 +84,9 @@ public class PrixMarcheGrossisteService {
         return pList;
     }
 
-    public List<PrixMarcheGrossiste> getAllByPoduitAndLoc(String nom,String loc ){
+    public List<PrixMarcheGrossiste> getAllByLocaliteAchat(String localiteAchat){
 
-        List<PrixMarcheGrossiste> pList = pRepository.findByProduitAndLocaliteVente(nom,loc);
+        List<PrixMarcheGrossiste> pList = pRepository.findByLocaliteAchat(localiteAchat);
         if(pList.isEmpty()){
             throw new IllegalStateException("Aucun prix grossiste trouvé");
         }
@@ -102,9 +94,19 @@ public class PrixMarcheGrossisteService {
         return pList;
     }
 
-    public List<PrixMarcheGrossiste> getAllByLocaliteVente(String nom){
+    public List<PrixMarcheGrossiste> getAllByPoduitAndLoc(String produit,String localiteVente ){
 
-        List<PrixMarcheGrossiste> pList = pRepository.findByLocaliteVente(nom);
+        List<PrixMarcheGrossiste> pList = pRepository.findByProduitAndLocaliteVente(produit,localiteVente);
+        if(pList.isEmpty()){
+            throw new IllegalStateException("Aucun prix grossiste trouvé");
+        }
+
+        return pList;
+    }
+
+    public List<PrixMarcheGrossiste> getAllByLocaliteVente(String localiteVente){
+
+        List<PrixMarcheGrossiste> pList = pRepository.findByLocaliteVente(localiteVente);
         if(pList.isEmpty()){
             throw new IllegalStateException("Aucun prix grossiste trouvé");
         }
@@ -122,6 +124,16 @@ public class PrixMarcheGrossisteService {
         return pList;
     }
 
+     public List<PrixMarcheGrossiste> getAllTop10prix() {
+        // Crée un PageRequest pour obtenir 10 enregistrements, triés par date en ordre décroissant
+        PageRequest pageRequest = PageRequest.of(0, 10);
+        return pRepository.findTop10ByOrderByDateEnregistrementDesc(pageRequest);
+    }
+
+
+    public PrixMarcheGrossiste getById(Long id){
+        return pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix grossiste non trouvé") );
+    }
 
     public String deletePrix(Long id){
         PrixMarcheGrossiste p = pRepository.findById(id).orElseThrow(() -> new IllegalStateException("Aucun prix grossiste non trouvé") );

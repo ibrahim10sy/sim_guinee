@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
 import sim.guinee.model.EnqueteCollecte;
+import sim.guinee.model.EnqueteConsommation;
 import sim.guinee.service.EnqueteCollecteService;
 
 
@@ -34,6 +35,13 @@ public class EnqueteCollecteController {
     @Operation(summary="Récuperation de tout les Enquetes Collectes")
     public ResponseEntity<List<EnqueteCollecte>> getAllEnqueteCollecte() {
         return new ResponseEntity<>(aService.getAll(), HttpStatus.OK);
+    }
+
+    
+    @GetMapping("/getAllEnqueteCollecteByTop10")
+    @Operation(summary="Récuperation des 10 derniers enquetes collecte")
+    public ResponseEntity<List<EnqueteCollecte>> getAllPrixMarcheGrossisteTop10() {
+        return new ResponseEntity<>(aService.getAllTop10prix(), HttpStatus.OK);
     }
 
     @GetMapping("/getById/{id}")

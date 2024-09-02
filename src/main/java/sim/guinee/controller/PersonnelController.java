@@ -2,6 +2,7 @@ package sim.guinee.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
 import java.util.*;
 
 import org.springframework.http.*;
@@ -19,6 +20,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import sim.guinee.config.ResponseHandler;
 import sim.guinee.model.Personnel;
+import sim.guinee.repository.PersonnelRepository;
+import sim.guinee.service.FileUpload;
 import sim.guinee.service.PersonnelService;
 
 @RestController
@@ -27,6 +30,10 @@ public class PersonnelController {
     
     @Autowired
     PersonnelService aService;
+    @Autowired 
+    PersonnelRepository pRepository;
+    @Autowired 
+    FileUpload upload;
 
     @PostMapping("/create")
     @Operation(summary = "création d'un personnel")
@@ -50,9 +57,57 @@ public class PersonnelController {
                 return new ResponseEntity<>(saved, HttpStatus.CREATED);
             }
    
+             @GetMapping("/{idPersonnel}/image")
+    public ResponseEntity<byte[]> getImage(@PathVariable String idPersonnel) {
+        try {
+            // Récupérer le nom de l'image associée a la marque
+            Personnel p = pRepository.findByIdPersonnel(idPersonnel);
+            if (p == null || p.getAvatar() == null) {
+                return ResponseEntity.notFound().build();
+            }
+    
+            String imageName = p.getAvatar();
+    
+            // Récupérer l'image à partir du serveur FTP
+            byte[] imageBytes = upload.getImageByName(imageName);
+    
+            // Détecter le type de contenu de l'image en fonction de son extension
+        MediaType contentType = detectContentType(imageName);
+    
+        // Retourner l'image avec le type de contenu approprié
+        return ResponseEntity.ok()
+                .contentType(contentType)
+                .body(imageBytes);
+    } catch (IOException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+    }
+          
+            private MediaType detectContentType(String imageName) {
+                String[] parts = imageName.split("\\.");
+                if (parts.length > 1) {
+                    String extension = parts[parts.length - 1].toLowerCase();
+                    switch (extension) {
+                        case "jpg":
+                        case "jpeg":
+                            return MediaType.IMAGE_JPEG;
+                        case "png":
+                            return MediaType.IMAGE_PNG;
+                        case "gif":
+                            return MediaType.IMAGE_GIF;
+                        // Ajoutez d'autres cas pour les types de contenu supplémentaires si nécessaire
+                        default:
+                            break;
+                    }
+                }
+                // Par défaut, retourner MediaType.APPLICATION_OCTET_STREAM
+                return MediaType.APPLICATION_OCTET_STREAM;
+            }
+
             @PutMapping("/update/{id}")
-    @Operation(summary = "Modification d'un personnel")
-    public ResponseEntity<Personnel> update(
+            @Operation(summary = "Modification d'un personnel")
+            public ResponseEntity<Personnel> update(
             @Valid @RequestParam("personnel") String acteurString,
             @PathVariable Long idPersonnel,
             @RequestParam(value = "avatar", required = false) MultipartFile imageFile

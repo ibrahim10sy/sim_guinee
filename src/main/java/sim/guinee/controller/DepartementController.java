@@ -30,10 +30,10 @@ public class DepartementController {
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
-    @GetMapping("/getDepartementByRegion/{nomRegion}")
+    @GetMapping("/getDepartementByRegion/{region}")
     @Operation(summary="Récuperation de tout les  Departements par region")
-    public ResponseEntity<List<Departement>>  getByDepartement(@PathVariable String nom) {
-        return new ResponseEntity<>(aService.getAllByRegion(nom), HttpStatus.OK);
+    public ResponseEntity<List<Departement>>  getByDepartement(@PathVariable int region) {
+        return new ResponseEntity<>(aService.getAllByRegion(region), HttpStatus.OK);
     }
 
     @GetMapping("/getAllDepartement")

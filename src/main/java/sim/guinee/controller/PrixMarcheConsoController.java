@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
 import sim.guinee.model.PrixMarcheConsommation;
+import sim.guinee.model.PrixMarcheGrossiste;
 import sim.guinee.service.PrixMarcheConsoService;
 
 @RestController
@@ -46,6 +47,12 @@ public class PrixMarcheConsoController {
     @Operation(summary="Récuperation de tout les Prix marche consommation")
     public ResponseEntity<List<PrixMarcheConsommation>> getAllPrixMarcheConsommation() {
         return new ResponseEntity<>(aService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllPrixMarcheConsoByTop10")
+    @Operation(summary="Récuperation des 10 derniers Prix marche consommation")
+    public ResponseEntity<List<PrixMarcheConsommation>> getAllPrixMarcheGrossisteTop10() {
+        return new ResponseEntity<>(aService.getAllTop10prix(), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

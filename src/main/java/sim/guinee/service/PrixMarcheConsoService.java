@@ -4,9 +4,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import sim.guinee.model.PrixMarcheConsommation;
+import sim.guinee.model.PrixMarcheGrossiste;
 import sim.guinee.repository.PrixMarcheConsommationRepo;
 
 @Service
@@ -51,6 +53,12 @@ public class PrixMarcheConsoService {
         }
 
         return pList;
+    }
+
+      public List<PrixMarcheConsommation> getAllTop10prix() {
+        // Crée un PageRequest pour obtenir 10 enregistrements, triés par date en ordre décroissant
+        PageRequest pageRequest = PageRequest.of(0, 10);
+        return pRepository.findTop10ByOrderByDateEnregistrementDesc(pageRequest);
     }
 
     public List<PrixMarcheConsommation> getAllByProduit(String produit){

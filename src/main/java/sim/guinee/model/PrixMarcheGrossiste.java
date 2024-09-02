@@ -16,7 +16,7 @@ public class PrixMarcheGrossiste {
     private long idFiche;
 
     @Column(nullable=true)
-    private long enquete;
+    private Long enquete;
 
     @Column(length = 100,nullable=true)
     private String grossiste;

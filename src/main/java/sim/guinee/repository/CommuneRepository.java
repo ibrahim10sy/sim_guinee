@@ -12,6 +12,6 @@ public interface CommuneRepository extends JpaRepository<Commune, Long > {
 
     Commune findByNomCommune(String nomCommune);
 
-    List<Commune> findByDepartement(String nom);
+    List<Commune> findByDepartement(String departement);
     
 }

@@ -30,10 +30,10 @@ public class CommuneController {
         return new ResponseEntity<>(aService.update(a, id), HttpStatus.OK);
     }
  
-    @GetMapping("/getCommuneByDepartement/{nomDepartement}")
+    @GetMapping("/getCommuneByDepartement/{departement}")
     @Operation(summary="Récuperation de tout les  Communes par departement")
-    public ResponseEntity<List<Commune>>  getByDepartement(@PathVariable String nom) {
-        return new ResponseEntity<>(aService.getAllByDepartement(nom), HttpStatus.OK);
+    public ResponseEntity<List<Commune>>  getByDepartement(@PathVariable String departement) {
+        return new ResponseEntity<>(aService.getAllByDepartement(departement), HttpStatus.OK);
     }
 
     @GetMapping("/getAllCommune")

@@ -26,8 +26,8 @@ public class CommuneService {
         }
 
         String code = codeGenerator.genererCode();
-        vi.setDateEnregistrement(LocalDateTime.now());
-        vi.setCodeCommune(code);
+        v.setDateEnregistrement(LocalDateTime.now());
+        v.setCodeCommune(code);
         return vRepository.save(v);
     }
 
@@ -55,8 +55,8 @@ public class CommuneService {
         return v;
     }
 
-    public List<Commune> getAllByDepartement(String nom){
-        List<Commune> v = vRepository.findByDepartement(nom);
+    public List<Commune> getAllByDepartement(String departement){
+        List<Commune> v = vRepository.findByDepartement(departement);
        
         if(v.isEmpty()){
             throw new IllegalStateException("Aucun Commune trouvé");

@@ -1,6 +1,7 @@
 package sim.guinee.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.*;
 import java.time.*;
@@ -8,6 +9,7 @@ import java.time.*;
 import org.springframework.stereotype.Service;
 
 import sim.guinee.model.EnqueteConsommation;
+import sim.guinee.model.EnqueteGrossiste;
 import sim.guinee.repository.EnqueteConsommationRepository;
 
 @Service
@@ -48,6 +50,12 @@ public class EnqueteConsommationService {
         }
 
         return fList;
+    }
+
+      public List<EnqueteConsommation> getAllTop10prix() {
+        // Crée un PageRequest pour obtenir 10 enregistrements, triés par date en ordre décroissant
+        PageRequest pageRequest = PageRequest.of(0, 10);
+        return fRepository.findTop10ByOrderByDateEnregistrementDesc(pageRequest);
     }
 
     public String deleteEnqueteConsommation(Long id ){

@@ -1,16 +1,15 @@
 package sim.guinee.service;
 
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 import java.util.Optional;
 import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,6 +32,8 @@ public class PersonnelService {
     SendMessage sendMessage;
     @Autowired
     CodeGenerator codeGenerator;
+    @Autowired 
+    ConnecterService cService;
 
     public Personnel create(Personnel p , MultipartFile avatar) throws Exception{
         
@@ -104,7 +105,7 @@ public class PersonnelService {
                     Files.copy(avatar.getInputStream(), imagePath, StandardCopyOption.REPLACE_EXISTING);
                     // String onlineImagePath =fileUploade.uploadImageToFTP(imagePath, imageName);
 
-                    p.setAvatar(imageName);
+                    per.setAvatar(imageName);
                 } catch (IOException e) {
                     throw new Exception("Erreur lors du traitement du fichier image : " + e.getMessage());
                 }
@@ -190,6 +191,7 @@ public class PersonnelService {
         if(p.getStatut()== 0){
             throw new NoContentException("Connexion échoué votre compte  est desactivé \n veuillez contacter l'administrateur pour la procedure d'activation de votre compte !");
         }
+        cService.create(p);
         return p;
         }
 }

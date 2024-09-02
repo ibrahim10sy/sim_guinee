@@ -20,7 +20,7 @@ public class Departement {
     private String codeDepartement;
 
     @Column(length = 20, nullable = false)
-    private String region;
+    private int region;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String nomDepartement;

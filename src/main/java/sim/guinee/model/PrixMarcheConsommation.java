@@ -43,10 +43,10 @@ public class PrixMarcheConsommation {
     private String document;
 
     @Column( nullable = false)
-    private Long appMobile = 0;
+    private int appMobile = 0;
 
     @Column( nullable = false)
-    private Long statut = 0;
+    private int statut = 0;
 
     @Column(columnDefinition = "TEXT",nullable=true)
     private String idPersonnel;

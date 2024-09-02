@@ -26,8 +26,8 @@ public class DepartementService {
         }
 
         String code = codeGenerator.genererCode();
-        vi.setDateEnregistrement(LocalDateTime.now());
-        vi.setCodeDepartement(code);
+        v.setDateEnregistrement(LocalDateTime.now());
+        v.setCodeDepartement(code);
         return vRepository.save(v);
     }
 
@@ -55,8 +55,8 @@ public class DepartementService {
         return v;
     }
 
-    public List<Departement> getAllByRegion(String nom){
-        List<Departement> v = vRepository.findByRegion(nom);
+    public List<Departement> getAllByRegion(int region){
+        List<Departement> v = vRepository.findByRegion(region);
        
         if(v.isEmpty()){
             throw new IllegalStateException("Aucun Departement trouvé");

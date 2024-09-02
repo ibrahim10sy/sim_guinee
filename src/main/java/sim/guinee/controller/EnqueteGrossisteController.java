@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import io.swagger.v3.oas.annotations.Operation;
 import sim.guinee.model.EnqueteGrossiste;
+import sim.guinee.model.PrixMarcheGrossiste;
 import sim.guinee.service.EnqueteGrossisteService;
 
 @RestController
@@ -31,6 +32,12 @@ public class EnqueteGrossisteController {
     @Operation(summary="Récuperation de tout les Enquetes Collectes")
     public ResponseEntity<List<EnqueteGrossiste>> getAllEnqueteGrossiste() {
         return new ResponseEntity<>(aService.getAll(), HttpStatus.OK);
+    }
+
+       @GetMapping("/getAllEnqueteGrossisteByTop10")
+    @Operation(summary="Récuperation des 10 derniers enquetes grossiste")
+    public ResponseEntity<List<EnqueteGrossiste>> getAllPrixMarcheGrossisteTop10() {
+        return new ResponseEntity<>(aService.getAllTop10prix(), HttpStatus.OK);
     }
 
     @GetMapping("/getById/{id}")

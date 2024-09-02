@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
 import sim.guinee.model.PrixMarcheCollecte;
+import sim.guinee.model.PrixMarcheConsommation;
 import sim.guinee.service.PrixMarcheCollecteService;
 
 @RestController
@@ -43,7 +44,7 @@ public class PrixMarcheCollecteController {
     }
    
 
-    @GetMapping("/getAllByLocalite/{nomGrossiste}")
+    @GetMapping("/getAllByLocalite/{localiteOrigine}")
     @Operation(summary="Récuperation de tout les prix marche  par localité ")
     public ResponseEntity<List<PrixMarcheCollecte>> getAllPrixMarcheCollecteByLoc(@PathVariable String localiteOrigine) {
         return new ResponseEntity<>(aService.getAllByLocalite(localiteOrigine), HttpStatus.OK);
@@ -53,6 +54,12 @@ public class PrixMarcheCollecteController {
     @Operation(summary="Récuperation de tout les Prix marche collecte")
     public ResponseEntity<List<PrixMarcheCollecte>> getAllPrixMarcheCollecte() {
         return new ResponseEntity<>(aService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllPrixMarcheCollecteByTop10")
+    @Operation(summary="Récuperation des 10 derniers Prix marche collecte ")
+    public ResponseEntity<List<PrixMarcheCollecte>> getAllPrixMarcheGrossisteTop10() {
+        return new ResponseEntity<>(aService.getAllTop10prix(), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

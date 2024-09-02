@@ -33,7 +33,7 @@ public class CategorieController {
         return new ResponseEntity<>(categorieService.getAll(), HttpStatus.OK);
     }
   
-    @GetMapping("/allByFamilleProduit/{nomFamille}")
+    @GetMapping("/allByFamilleProduit/{familleProduit}")
     @Operation(summary="Récuperation de tout les catégories ")
     public ResponseEntity<List<CategorieProduit>> getAllByFamille(@PathVariable String familleProduit) {
         return new ResponseEntity<>(categorieService.getAllByFamilleProduit(familleProduit), HttpStatus.OK);

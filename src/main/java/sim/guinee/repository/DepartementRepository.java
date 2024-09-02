@@ -12,7 +12,7 @@ public interface DepartementRepository extends JpaRepository<Departement, Long >
 
     Departement findByNomDepartement(String nomDepartement);
 
-    List<Departement> findByRegion(String nom);
+    List<Departement> findByRegion(int region);
 
     
 }

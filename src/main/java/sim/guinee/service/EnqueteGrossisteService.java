@@ -1,6 +1,7 @@
 package sim.guinee.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -47,6 +48,12 @@ public class EnqueteGrossisteService {
         }
 
         return fList;
+    }
+
+      public List<EnqueteGrossiste> getAllTop10prix() {
+        // Crée un PageRequest pour obtenir 10 enregistrements, triés par date en ordre décroissant
+        PageRequest pageRequest = PageRequest.of(0, 10);
+        return fRepository.findTop10ByOrderByDateEnregistrementDesc(pageRequest);
     }
 
     public String deleteEnqueteGrossiste(Long id ){

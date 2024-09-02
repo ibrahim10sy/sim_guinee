@@ -56,6 +56,8 @@ public class EnqueteurService {
         return fList;
     }
 
+    
+
     public String deleteEnqueteur(Long id ){
         Enqueteur f = fRepository.findById(id).orElseThrow(() -> new IllegalStateException("Enqueteur non trouvé") );
         fRepository.delete(f);
