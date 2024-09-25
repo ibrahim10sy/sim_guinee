@@ -78,6 +78,6 @@ public class VillageService {
     public String deleteVillage(Long idVillage){
        Village v  = vRepository.findById(idVillage).orElseThrow(() -> new IllegalStateException("Village non trouvé") );
         vRepository.delete(v);
-        return "Village  supprimée avec succès";
+        return "Village  supprimer avec succès";
     }
 }
