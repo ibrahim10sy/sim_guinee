@@ -63,7 +63,7 @@ public class VillageService {
         List<Village> v = vRepository.findByCommune(id);
        
         if(v.isEmpty()){
-            throw new IllegalStateException("Aucun village trouvé");
+            throw new IllegalStateException("Aucun village trouvée");
         }
 
         return v;
